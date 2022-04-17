@@ -19,9 +19,9 @@ class Screen:
 
     def __init__(self):
     # Raspberry Pi pin configuration:
-        #RST = None     # on the PiOLED this pin isnt used
+        RST = None     # on the PiOLED this pin isnt used
     # Note the following are only used with SPI:
-        disp = Adafruit_SSD1306.SSD1306_128_32()
+        disp = Adafruit_SSD1306.SSD1306_128_32(RST)
         disp.begin()
         disp.clear()
         disp.display()
