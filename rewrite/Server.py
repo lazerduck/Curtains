@@ -1,11 +1,13 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from Curtains import Curtains
 from LightSensor import LightSensor
+from Output import Output
 import json
 
 class webHandler(BaseHTTPRequestHandler):
     controller = Curtains()
     sensor = LightSensor(controller)
+    output = Output(controller, sensor)
 
     def open(self):
         self.controller.open()
@@ -40,7 +42,10 @@ class webHandler(BaseHTTPRequestHandler):
             "open": self.open,
             "close": self.close,
             "stop": self.stop,
-            "state": self.state
+            "state": self.state,
+            # legacy
+            "startopen": self.open,
+            "startclose": self.close,
         }
 
         pathVals = list(filter(None, self.path.split('/')))
