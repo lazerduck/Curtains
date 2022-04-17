@@ -32,8 +32,8 @@ class Curtains:
 
     def applyPins(self):
         print("Applying Pins")
-        # GPIO.output(self.state.open.Pin, 1 if self.state.open.Value else 0)
-        # GPIO.output(self.state.move.Pin, 1 if self.state.move.Value else 0)
+        GPIO.output(self.state.open.Pin, 1 if self.state.open.Value else 0)
+        GPIO.output(self.state.move.Pin, 1 if self.state.move.Value else 0)
 
     def setOpen(self, value):
         self.state.open.Value = value
