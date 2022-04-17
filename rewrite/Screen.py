@@ -21,12 +21,12 @@ class Screen:
     # Raspberry Pi pin configuration:
         RST = None     # on the PiOLED this pin isnt used
     # Note the following are only used with SPI:
-        disp = Adafruit_SSD1306.SSD1306_128_32(RST)
-        disp.begin()
-        disp.clear()
-        disp.display()
-        self.width = disp.width
-        self.height = disp.height
+        self.disp = Adafruit_SSD1306.SSD1306_128_32(RST)
+        self.disp.begin()
+        self.disp.clear()
+        self.disp.display()
+        self.width = self.disp.width
+        self.height = self.disp.height
         self.image = Image.new('1', (self.width, self.height))
         self.draw = ImageDraw.Draw(self.image)
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
