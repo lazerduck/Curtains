@@ -44,6 +44,7 @@ class Curtains:
     def stop(self):
         print("Stop")
         self.setMoving(False)
+        self.setOpen(False)
         self.applyPins()
 
     def open(self):
