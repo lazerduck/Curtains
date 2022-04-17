@@ -13,8 +13,8 @@ class Pin:
         self.Value = value
 
 class CurtainState:
-    open: Pin = Pin(7, False)
-    move: Pin = Pin(11, False)
+    open: Pin = Pin(11, False)
+    move: Pin = Pin(7, False)
     openTime: int = 26
     closeTime: int = 26
 
