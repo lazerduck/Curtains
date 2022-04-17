@@ -38,6 +38,7 @@ class Screen:
         self.bottom = self.height-padding
         self.x = 0
         self.font = ImageFont.load_default()
+        self.draw()
 
     def __del__(self):
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
