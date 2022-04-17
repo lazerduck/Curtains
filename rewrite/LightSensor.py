@@ -23,7 +23,6 @@ class LightSensor:
 
     def getLightValue(self):
         return not GPIO.input(self.lightPin)
-        return 1
 
     def isOutsideOfLimits(self):
         if(self.isNight):
