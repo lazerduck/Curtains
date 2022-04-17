@@ -7,7 +7,7 @@ class Output:
     curtains: Curtains
     sensor: LightSensor
     screen: Screen
-    pollRate: 5
+    pollRate: 1
 
     def __init__(self, curtains, sensor):
         self.curtains = curtains
@@ -16,7 +16,7 @@ class Output:
         self.update()
 
     def update(self):
-        threading.Timer(self.pollRate, self.update).start()
+        threading.Timer(1, self.update).start()
         self.screen.line1 = "Status"
         self.screen.line2 = "Moving: " + str(self.curtains.state.move.Value)
         self.screen.line3 = "Open: " + str(self.curtains.state.open.Value)
