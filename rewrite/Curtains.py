@@ -13,8 +13,8 @@ class Pin:
         self.Value = value
 
 class CurtainState:
-    open: Pin = Pin(11, False)
-    move: Pin = Pin(7, False)
+    open: Pin = Pin(17, False)
+    move: Pin = Pin(4, False)
     openTime: int = 26
     closeTime: int = 26
 
@@ -22,7 +22,7 @@ class Curtains:
     state = CurtainState()
 
     def __init__(self):
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.state.move.Pin, GPIO.OUT)
         GPIO.setup(self.state.open.Pin, GPIO.OUT)
         self.timer = threading.Timer(0, self.stop)

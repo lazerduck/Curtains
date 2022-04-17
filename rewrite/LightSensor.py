@@ -6,7 +6,7 @@ import datetime
 
 class LightSensor:
     controller: Curtains
-    lightPin = 13
+    lightPin = 27
     lightTime = 30
     lightCount = 0
     lightMax = 3
@@ -17,7 +17,7 @@ class LightSensor:
 
     def __init__(self, curtains):
         self.controller = curtains
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.lightPin, GPIO.IN)
         self.checkLight()
 
