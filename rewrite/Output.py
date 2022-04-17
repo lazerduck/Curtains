@@ -13,7 +13,6 @@ class Output:
         self.curtains = curtains
         self.sensor = sensor
         self.screen = Screen()
-        self.screen.drawText()
 
     def update(self):
         threading.Timer(self.pollRate, self.update).start()

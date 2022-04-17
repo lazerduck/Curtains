@@ -19,12 +19,9 @@ class Screen:
 
     def __init__(self):
     # Raspberry Pi pin configuration:
-        RST = None     # on the PiOLED this pin isnt used
+        #RST = None     # on the PiOLED this pin isnt used
     # Note the following are only used with SPI:
-        DC = 23
-        SPI_PORT = 0
-        SPI_DEVICE = 0
-        disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+        disp = Adafruit_SSD1306.SSD1306_128_32()
         disp.begin()
         disp.clear()
         disp.display()
@@ -38,7 +35,8 @@ class Screen:
         self.bottom = self.height-padding
         self.x = 0
         self.font = ImageFont.load_default()
-        self.draw()
+        self.drawText()
+        print("Screen started")
 
     def __del__(self):
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
