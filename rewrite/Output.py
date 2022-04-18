@@ -71,6 +71,12 @@ class Output:
         self.screen.line3 = "Manual Control"
         self.screen.line4 = ""
 
+    def manualControl(self):
+        self.screen.line1 = "< Manual Control"
+        self.screen.line2 = "Open (1s)"
+        self.screen.line3 = "Close (1s) "
+        self.screen.line4 = ""
+
     def startStatusScreen(self):
         self.currentScreen.screenMethod = self.statusScreen
         self.currentScreen.selectableRange = [1]
@@ -80,8 +86,25 @@ class Output:
     def startMainMenuScreen(self):
         self.currentScreen.screenMethod = self.mainMenu
         self.currentScreen.selectableRange = [2,3]
-        self.currentScreen.actions = [self.startStatusScreen, self.startStatusScreen]
+        self.currentScreen.actions = [self.startStatusScreen, self.startManualControlScreen]
         self.currentScreen.selectPosition = 0
 
+    def startManualControlScreen(self):
+        self.currentScreen.screenMethod = self.manualControl
+        self.currentScreen.selectableRange = [1,2,3]
+        self.currentScreen.actions = [self.startMainMenuScreen,self.openOneSecond, self.closeOneSecond]
+        self.currentScreen.selectPosition = 0
+
+    def openOneSecond(self):
+        self.curtains.open()
+        self.timer.cancel()
+        self.timer = threading.Timer(1, self.curtains.stop)
+        self.timer.start()
+
+    def closeOneSecond(self):
+        self.curtains.close()
+        self.timer.cancel()
+        self.timer = threading.Timer(1, self.curtains.stop)
+        self.timer.start()
 
     
