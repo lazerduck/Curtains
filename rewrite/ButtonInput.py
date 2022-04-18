@@ -1,3 +1,4 @@
+from time import sleep
 import RPi.GPIO as GPIO
 
 def placeHolder():
@@ -25,4 +26,7 @@ class ButtonInput:
         self.buttonTwoEvent()
 
 obj = ButtonInput()
+
+while(True):
+    sleep(1)
     
