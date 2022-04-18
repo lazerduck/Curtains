@@ -59,7 +59,9 @@ class Screen:
         for line in lines:
             if(line.selected):
                 self.draw.rectangle((self.x, self.top + offset,self.width,self.top + (2*offset)), outline=0, fill=255)
-            self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=255 if line.selected else 0)
+            self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
+            offset += 8
+
 
         # Display image.
         self.disp.image(self.image)
