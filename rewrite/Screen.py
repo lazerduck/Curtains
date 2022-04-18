@@ -10,6 +10,14 @@ import threading
 
 import subprocess
 
+class line:
+    text = ""
+    selected = False
+
+    def __init__(self, txt, sel):
+        self.text = txt
+        self.selected = sel
+
 class Screen:
     line1 = "line1"
     line2 = "line2"
@@ -60,7 +68,7 @@ class Screen:
 
     def getLines(self):
         return [
-            {"text": self.line1, "selected": self.selectedLine == 1},
-            {"text": self.line2, "selected": self.selectedLine == 2},
-            {"text": self.line3, "selected": self.selectedLine == 3},
-            {"text": self.line4, "selected": self.selectedLine == 4}]
+            line(self.line1, self.selectedLine == 1),
+            line(self.line2, self.selectedLine == 2),
+            line(self.line3, self.selectedLine == 3),
+            line(self.line4, self.selectedLine == 4)]
