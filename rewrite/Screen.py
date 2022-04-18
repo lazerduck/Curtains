@@ -24,6 +24,7 @@ class Screen:
     line3 = "line3"
     line4 = "line4"
     selectedLine = 1
+    active = True
 
     def __init__(self):
     # Raspberry Pi pin configuration:
@@ -53,14 +54,15 @@ class Screen:
         # Draw a black filled box to clear the image.
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
-        lines = self.getLines()
-        offset = 0
-        
-        for line in lines:
-            if(line.selected):
-                self.draw.rectangle((self.x, self.top + offset, self.width,self.top + offset + 8), outline=0, fill=255)
-            self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
-            offset += 8
+        if(self.active):
+            lines = self.getLines()
+            offset = 0
+            
+            for line in lines:
+                if(line.selected):
+                    self.draw.rectangle((self.x, self.top + offset, self.width,self.top + offset + 8), outline=0, fill=255)
+                self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
+                offset += 8
 
 
         # Display image.

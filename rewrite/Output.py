@@ -23,16 +23,13 @@ class Output:
 
     def update(self):
         threading.Timer(1, self.update).start()
+        lightSensorValue = self.sensor.getLightValue()
+        self.screen.active = self.ageCount < 60
         if(self.ageCount < 60):
             self.screen.line1 = "Status"
             self.screen.line2 = "Moving: " + str(self.curtains.state.move.Value)
-            self.screen.line3 = "Open: " + str(self.curtains.state.open.Value)
-            self.screen.line4 = "Is Light: " + str(self.sensor.getLightValue())
-        else:
-            self.screen.line1 = ""
-            self.screen.line2 = ""
-            self.screen.line3 = ""
-            self.screen.line4 = ""
+            self.screen.line3 = "Is Night: " + str(self.sensor.isNight)
+            self.screen.line4 = "Is Light: " + str()
 
         newData = str(self.curtains.state.move.Value)+ str(self.curtains.state.open.Value)+ str(self.sensor.getLightValue())
         if(self.oldData == newData):
