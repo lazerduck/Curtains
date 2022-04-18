@@ -15,7 +15,7 @@ class Screen:
     line2 = "line2"
     line3 = "line3"
     line4 = "line4"
-    selectedLine = -1
+    selectedLine = 1
 
     def __init__(self):
     # Raspberry Pi pin configuration:
@@ -45,13 +45,22 @@ class Screen:
         # Draw a black filled box to clear the image.
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
-        # Write two lines of text.
-        self.draw.text((self.x, self.top),       self.line1,  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+8),       self.line2,  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+16),       self.line3,  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+24),       self.line4,  font=self.font, fill=255)
+        lines = self.getLines()
+        offset = 0
+        
+        for line in lines:
+            if(line.selected):
+                self.draw.rectangle((self.x, self.top + offset,self.width,self.top + (2*offset)), outline=0, fill=255)
+            self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=255 if line.selected else 0)
 
         # Display image.
         self.disp.image(self.image)
         self.disp.display()
         threading.Timer(0.1, self.drawText).start()
+
+    def getLines(self):
+        return [
+            {"text": self.line1, "selected": self.selectedLine == 1},
+            {"text": self.line2, "selected": self.selectedLine == 2},
+            {"text": self.line3, "selected": self.selectedLine == 3},
+            {"text": self.line4, "selected": self.selectedLine == 4}]

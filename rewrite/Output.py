@@ -2,6 +2,7 @@ from Curtains import Curtains
 from LightSensor import LightSensor
 from Screen import Screen
 import threading
+from ButtonInput import ButtonInput
 
 class Output:
     curtains: Curtains
@@ -10,11 +11,14 @@ class Output:
     pollRate: 1
     oldData = ""
     ageCount = 0
+    buttonInput: ButtonInput
 
     def __init__(self, curtains, sensor):
         self.curtains = curtains
         self.sensor = sensor
         self.screen = Screen()
+        self.buttonInput = ButtonInput()
+        self.buttonInput.buttonOneEvent = self.activateScreen
         self.update()
 
     def update(self):
@@ -37,5 +41,8 @@ class Output:
             self.ageCount = 0
 
         self.oldData = newData
+
+    def activateScreen(self):
+        self.ageCount = 0
 
     
