@@ -2,6 +2,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from Curtains import Curtains
 from LightSensor import LightSensor
 from Output import Output
+import datetime
 import json
 
 class webHandler(BaseHTTPRequestHandler):
@@ -33,6 +34,14 @@ class webHandler(BaseHTTPRequestHandler):
         }
         return json.dumps(data)
 
+    def setLightTime(self, data):
+        self.sensor.morning =  datetime.datetime.strptime(data["morning"], '%H:%M').time()
+        self.sensor.evening = datetime.datetime.strptime(data["evening"], '%H:%M').time()
+
+    def setMoveTimes(self, data):
+        self.controller.openTime = int(data["openTime"])
+        self.controller.closeTime = int(data["closeTime"])
+
     def do_GET(self):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -63,7 +72,8 @@ class webHandler(BaseHTTPRequestHandler):
         data = json.loads(self.data_string.decode("utf-8"))
 
         actions = {
-            "setlighttimes": self.setLightTime
+            "setlighttimes": self.setLightTime,
+            "setmovetimes": self.setMoveTimes
         }
 
         pathVals = list(filter(None, self.path.split('/')))
@@ -73,5 +83,5 @@ class webHandler(BaseHTTPRequestHandler):
 
 
 
-server = HTTPServer(('192.168.2.217',8080), webHandler)
+server = HTTPServer(('192.168.2.152',8080), webHandler)
 server.serve_forever()
