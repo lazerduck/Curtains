@@ -60,7 +60,7 @@ class Screen:
             
             for line in lines:
                 if(line.selected):
-                    self.draw.rectangle((self.x, self.top + offset, self.width,self.top + offset + 8), outline=0, fill=255)
+                    self.draw.rectangle((0, self.top + offset -1, self.width,self.top + offset + 9), outline=0, fill=255)
                 self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
                 offset += 8
 
