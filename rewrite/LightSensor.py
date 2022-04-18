@@ -19,6 +19,7 @@ class LightSensor:
         self.controller = curtains
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.lightPin, GPIO.IN)
+        self.isNight = not self.getLightValue()
         self.checkLight()
 
     def getLightValue(self):
