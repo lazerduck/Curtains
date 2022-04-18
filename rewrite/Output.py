@@ -51,7 +51,7 @@ class Output:
 
     def select(self):
         print("select")
-        self.currentScreen.actions[self.screen.selectedLine]()
+        self.currentScreen.actions[self.currentScreen.selectPosition]()
 
     def move(self):
         self.currentScreen.selectPosition += 1
