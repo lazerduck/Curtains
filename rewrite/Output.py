@@ -29,6 +29,7 @@ class Output:
         self.buttonInput.buttonOneEvent = self.move
         self.buttonInput.buttonTwoEvent = self.select
         self.currentScreen = CurrentScreen()
+        self.timer = threading.Timer(0, self.curtains.stop)
         self.startMainMenuScreen()
         self.update()
 
@@ -50,10 +51,12 @@ class Output:
         self.oldData = newData
 
     def select(self):
+        self.ageCount = 0
         print("select")
         self.currentScreen.actions[self.currentScreen.selectPosition]()
 
     def move(self):
+        self.ageCount = 0
         self.currentScreen.selectPosition += 1
         if(self.currentScreen.selectPosition >= len(self.currentScreen.selectableRange)):
             self.currentScreen.selectPosition = 0
