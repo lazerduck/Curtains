@@ -1,7 +1,7 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-def placeHolder():
+def placeHolder(obj):
     print("Placeholder event")
 
 class ButtonInput:
