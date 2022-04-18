@@ -14,14 +14,14 @@ class ButtonInput:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.buttonOnePin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.buttonTwoPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(self.buttonOnePin, GPIO.RISING, callback=self.buttonOneEvent, bouncetime=100) 
-        GPIO.add_event_detect(self.buttonTwoPin, GPIO.RISING, callback=self.buttonTwoEvent, bouncetime=100) 
+        GPIO.add_event_detect(self.buttonOnePin, GPIO.RISING, callback=self.buttonOneEvent, bouncetime=300) 
+        GPIO.add_event_detect(self.buttonTwoPin, GPIO.RISING, callback=self.buttonTwoEvent, bouncetime=300) 
 
-    def buttonOneEvent(self):
+    def buttonOneEvent(self, channel):
         print("btn_1")
         self.buttonOneEvent()
 
-    def buttonTwoEvent(self):
+    def buttonTwoEvent(self, channel):
         print("btn_2")
         self.buttonTwoEvent()
 
