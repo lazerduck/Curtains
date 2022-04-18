@@ -18,6 +18,7 @@ class Output:
     pollRate: 1
     oldData = ""
     ageCount = 0
+    ageMax = 60
     buttonInput: ButtonInput
     currentScreen: CurrentScreen
 
@@ -35,7 +36,7 @@ class Output:
 
     def update(self):
         threading.Timer(1, self.update).start()
-        self.screen.active = self.ageCount < 60
+        self.screen.active = self.ageCount < self.ageMax
 
         if(self.screen.active):
             self.screen.selectedLine = self.currentScreen.selectableRange[self.currentScreen.selectPosition]
@@ -51,11 +52,17 @@ class Output:
         self.oldData = newData
 
     def select(self):
+        if(self.ageCount >= self.ageMax):
+            self.ageCount = 0
+            return
         self.ageCount = 0
         print("select")
         self.currentScreen.actions[self.currentScreen.selectPosition]()
 
     def move(self):
+        if(self.ageCount >= self.ageMax):
+            self.ageCount = 0
+            return
         self.ageCount = 0
         self.currentScreen.selectPosition += 1
         if(self.currentScreen.selectPosition >= len(self.currentScreen.selectableRange)):
