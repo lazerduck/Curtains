@@ -55,6 +55,8 @@ class webHandler(BaseHTTPRequestHandler):
             # legacy
             "startopen": self.open,
             "startclose": self.close,
+            "left": self.open,
+            "right": self.close
         }
 
         pathVals = list(filter(None, self.path.split('/')))
