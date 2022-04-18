@@ -28,6 +28,7 @@ class Output:
         self.buttonInput = ButtonInput()
         self.buttonInput.buttonOneEvent = self.move
         self.buttonInput.buttonTwoEvent = self.select
+        self.currentScreen = CurrentScreen()
         self.startMainMenuScreen()
         self.update()
 
