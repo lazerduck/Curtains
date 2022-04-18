@@ -29,9 +29,9 @@ class Output:
             self.screen.line1 = "Status"
             self.screen.line2 = "Moving: " + str(self.curtains.state.move.Value)
             self.screen.line3 = "Is Night: " + str(self.sensor.isNight)
-            self.screen.line4 = "Is Light: " + str()
+            self.screen.line4 = "Is Light: " + str(lightSensorValue)
 
-        newData = str(self.curtains.state.move.Value)+ str(self.curtains.state.open.Value)+ str(self.sensor.getLightValue())
+        newData = str(self.curtains.state.move.Value)+ str(self.curtains.state.open.Value)+ str(lightSensorValue)
         if(self.oldData == newData):
             self.ageCount += 1
         else:
