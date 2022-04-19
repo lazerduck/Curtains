@@ -30,7 +30,7 @@ class LightSensor:
             if(datetime.datetime.now().time() > self.morning):
                 return True
         else:
-            if(datetime.datetime.now().time() < self.evening):
+            if(datetime.datetime.now().time() > self.evening):
                 return True
         return False
 
@@ -44,9 +44,7 @@ class LightSensor:
             return
         isLight = self.getLightValue()
         print("Sensor reports: " + str(isLight))
-        if(self.isNight and isLight):
-            self.lightCount += 1
-        elif(not self.isNight and not isLight):
+        if(self.isNight == isLight):
             self.lightCount += 1
         else:
             self.lightCount = 0
