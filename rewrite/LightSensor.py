@@ -56,3 +56,4 @@ class LightSensor:
             else:
                 self.controller.close()
             self.isNight = not self.isNight
+            self.lightCount = 0

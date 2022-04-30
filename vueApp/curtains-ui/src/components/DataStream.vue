@@ -27,7 +27,7 @@ export default {
   methods: {
     updateCurtainData() {
       const that = this;
-      fetch(`${this.baseUrl}data`)
+      fetch(`${this.baseUrl}state`)
         .then((resp) => resp.json())
         .then((data) => {
           that.isLight = data.isLight;
