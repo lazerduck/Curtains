@@ -31,7 +31,7 @@ class Output:
         self.buttonInput.buttonTwoEvent = self.select
         self.currentScreen = CurrentScreen()
         self.timer = threading.Timer(0, self.curtains.stop)
-        self.startMainMenuScreen()
+        self.startStatusScreen() # Default to the status screen while the buttons are disabled
         self.update()
 
     def update(self):

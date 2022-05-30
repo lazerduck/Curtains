@@ -1,4 +1,10 @@
 import RPi.GPIO as GPIO
+import logging
+from systemd.journal import JournaldLogHandler
+
+logger = logging.getLogger(__name__)
+journald_handler = JournaldLogHandler()
+logger.addHandler(journald_handler)
 
 def placeHolder(obj):
     print("Placeholder event")
@@ -18,9 +24,13 @@ class ButtonInput:
 
     def buttonOneCallback(self, channel):
         print("btn_1")
-        self.buttonOneEvent()
+        logger.info("btn_1")
+        # self.buttonOneEvent()
 
     def buttonTwoCallback(self, channel):
         print("btn_2")
-        self.buttonTwoEvent()
+        logger.info("btn_2")
+        # self.buttonTwoEvent()
+
+    ## buttons seem to be being triggered when the motor changes?
     
