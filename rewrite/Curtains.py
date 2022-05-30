@@ -3,12 +3,6 @@ from multiprocessing.sharedctypes import Value
 from tracemalloc import stop
 import RPi.GPIO as GPIO
 import threading
-import logging
-from systemd.journal import JournaldLogHandler
-
-logger = logging.getLogger(__name__)
-journald_handler = JournaldLogHandler()
-logger.addHandler(journald_handler)
 
 class Pin:
     Pin: int
@@ -48,14 +42,13 @@ class Curtains:
         self.state.move.Value = value
 
     def stop(self):
-        logger.info("Stop")
         print("Stop")
         self.setMoving(False)
         self.setOpen(False)
         self.applyPins()
 
     def open(self):
-        logger.info("Open")
+        print("Open")
         self.setOpen(True)
         self.setMoving(True)
         self.applyPins()
@@ -64,7 +57,6 @@ class Curtains:
         self.timer.start()
 
     def close(self):
-        logger.info("Close")
         print("Close")
         self.setOpen(False)
         self.setMoving(True)
