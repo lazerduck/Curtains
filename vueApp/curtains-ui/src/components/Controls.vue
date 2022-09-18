@@ -15,7 +15,7 @@
         <button class="buttonPassive" @click="lightOn">light sensor on</button>
         <button class="buttonPassive" @click="lightOff">light sensor off</button>
       </div>
-      <CurtainTimes :baseUrl="baseUrl" />
+      <CurtainTimes :automationDetails="automationDetails" :baseUrl="baseUrl" />
     </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
     return {
       baseUrl: 'http://192.168.2.152:8080/',
     };
+  },
+  props: {
+    automationDetails: {},
   },
   methods: {
     startLeft() {

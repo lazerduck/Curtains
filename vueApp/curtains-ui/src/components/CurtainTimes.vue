@@ -2,28 +2,28 @@
   <div>
     <hr />
     <div>
-      <label>Open time: {{openTime}} |</label>
+      <label>Open time: {{automationDetails.openTime}} |</label>
       <label>New Time:</label>
-      <input :value="openTime" type="number" min="0" ref="newOpen"/>
+      <input v-model="openTime" type="number" min="0"/>
     </div>
       <div>
-      <label>Close time: {{closeTime}} |</label>
+      <label>Close time: {{automationDetails.closeTime}} |</label>
       <label>New Time:</label>
-      <input :value="closeTime" type="number" min="0" ref="newClose" />
+      <input v-model="closeTime" type="number" min="0"/>
     </div>
     <div>
       <button @click="setTravelTime">Submit</button>
     </div>
     <hr />
     <div>
-      <label>Morning: {{morning}} |</label>
+      <label>Morning: {{automationDetails.morning}} |</label>
       <label>New Time:</label>
-      <input :value="morning" type="time" ref="newMorning"/>
+      <input v-model="morning" type="time"/>
     </div>
       <div>
-      <label>Evening: {{evening}} |</label>
+      <label>Evening: {{automationDetails.evening}} |</label>
       <label>New Time:</label>
-      <input :value="evening" type="time" ref="newEvening" />
+      <input v-model="evening" type="time"/>
     </div>
     <div>
       <button @click="setLightTime">Submit</button>
@@ -38,61 +38,36 @@ export default {
     return {
       openTime: 0,
       closeTime: 0,
-      morning: new Date(),
-      evening: new Date(),
+      morning: null,
+      evening: null,
     };
-  },
-  created() {
-    this.getLightTime();
-    this.getTravelTime();
   },
   props: {
     baseUrl: null,
+    automationDetails: {},
   },
   methods: {
-    getTravelTime() {
-      const that = this;
-      fetch(`${this.baseUrl}travelTimes`)
-        .then((resp) => resp.json())
-        .then((data) => {
-          that.openTime = data.open;
-          that.closeTime = data.close;
-        });
-    },
-    getLightTime() {
-      const that = this;
-      fetch(`${this.baseUrl}lighttimes`)
-        .then((resp) => resp.json())
-        .then((data) => {
-          that.morning = data.morning;
-          that.evening = data.evening;
-        });
-    },
     setTravelTime() {
-      const open = this.$refs.newOpen.value;
-      const close = this.$refs.newClose.value;
+      const that = this;
       fetch(`${this.baseUrl}setmovetimes`,
         {
           method: 'POST',
           body: JSON.stringify({
-            openTime: open,
-            closeTime: close,
+            openTime: that.openTime,
+            closeTime: that.closeTime,
           }),
         });
-      this.getTravelTime();
     },
     setLightTime() {
-      const morning = this.$refs.newMorning.value;
-      const evening = this.$refs.newEvening.value;
+      const that = this;
       fetch(`${this.baseUrl}setlighttimes`,
         {
           method: 'POST',
           body: JSON.stringify({
-            morning,
-            evening,
+            morning: that.morning,
+            evening: that.evening,
           }),
         });
-      this.getLightTime();
     },
   },
 };

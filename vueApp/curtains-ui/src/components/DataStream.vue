@@ -17,6 +17,10 @@ export default {
       isNight: false,
       lightCount: 0,
       lightOn: true,
+      openTime: 0,
+      closeTime: 0,
+      morning: '',
+      evening: '',
       baseUrl: 'http://192.168.2.152:8080/',
     };
   },
@@ -36,6 +40,17 @@ export default {
           that.isNight = data.isNight;
           that.lightCount = data.lightCount;
           that.lightOn = data.lightOn;
+          that.openTime = data.openTime;
+          that.closeTime = data.closeTime;
+          that.morning = data.morning;
+          that.evening = data.evening;
+
+          that.$emit('update', {
+            openTime: that.openTime,
+            closeTime: that.closeTime,
+            morning: that.morning,
+            evening: that.evening,
+          });
         });
     },
   },

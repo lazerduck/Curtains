@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <DataStream />
-    <Controls />
+    <DataStream @update="getUpdate" />
+    <Controls :automationDetails="automationDetails" />
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   components: {
     DataStream,
     Controls,
+  },
+  data() {
+    return {
+      automationDetails: {},
+    };
+  },
+  methods: {
+    getUpdate(data) {
+      this.automationDetails = data;
+    },
   },
 };
 </script>

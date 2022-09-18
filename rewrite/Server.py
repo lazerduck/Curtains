@@ -39,8 +39,8 @@ class webHandler(BaseHTTPRequestHandler):
         self.sensor.evening = datetime.datetime.strptime(data["evening"], '%H:%M').time()
 
     def setMoveTimes(self, data):
-        self.controller.openTime = int(data["openTime"])
-        self.controller.closeTime = int(data["closeTime"])
+        self.controller.setOpenTime(int(data["openTime"]))
+        self.controller.setCloseTime(int(data["closeTime"]))
 
     def do_GET(self):
         self.send_response(200)
