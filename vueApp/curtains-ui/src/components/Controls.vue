@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      baseUrl: 'http://192.168.2.152:8080/',
+      baseUrl: 'http://curtains.local/api/',
     };
   },
   props: {

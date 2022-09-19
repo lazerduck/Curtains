@@ -21,7 +21,7 @@ export default {
       closeTime: 0,
       morning: '',
       evening: '',
-      baseUrl: 'http://192.168.2.152:8080/',
+      baseUrl: 'http://curtains.local/api/',
     };
   },
   created() {
