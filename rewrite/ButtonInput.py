@@ -18,11 +18,12 @@ class ButtonInput:
 
     def buttonOneCallback(self, channel):
         print("btn_1")
-        # self.buttonOneEvent()
+        self.buttonOneEvent()
 
     def buttonTwoCallback(self, channel):
         print("btn_2")
-        # self.buttonTwoEvent()
+        self.buttonTwoEvent()
 
     ## buttons seem to be being triggered when the motor changes?
+    ## trying them again
     
