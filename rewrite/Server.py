@@ -22,12 +22,12 @@ class webHandler(BaseHTTPRequestHandler):
     def state(self):
         data = {
             "isMoving": self.controller.state.move.Value,
-            "isOpening": self.controller.state.open.Value,
+            "isLeft": self.controller.state.open.Value,
             "openTime": self.controller.state.openTime,
             "closeTime": self.controller.state.closeTime,
             "lightCount": self.sensor.lightCount,
-            "isBright": self.sensor.getLightValue(),
-            "isLightSensorOn": self.sensor.isOn,
+            "isLight": self.sensor.getLightValue(),
+            "lightOn": self.sensor.isOn,
             "isNight": self.sensor.isNight,
             "morning": self.sensor.morning.strftime("%H:%M"),
             "evening": self.sensor.evening.strftime("%H:%M")
