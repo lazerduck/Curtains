@@ -73,3 +73,6 @@ class Curtains:
 
     def setCloseTime(self, time):
         self.state.closeTime = time
+
+    def isMoving(self):
+        return self.controller.state.move.Value

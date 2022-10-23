@@ -106,12 +106,18 @@ class Output:
         self.currentScreen.selectPosition = 0
 
     def openOneSecond(self):
+        if(self.curtains.isMoving()):
+            return
+            
         self.curtains.open()
         self.timer.cancel()
         self.timer = threading.Timer(1, self.curtains.stop)
         self.timer.start()
 
     def closeOneSecond(self):
+        if(self.curtains.isMoving()):
+            return
+
         self.curtains.close()
         self.timer.cancel()
         self.timer = threading.Timer(1, self.curtains.stop)
