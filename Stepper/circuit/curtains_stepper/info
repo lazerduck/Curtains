@@ -1,0 +1,156 @@
+{
+  "uuid": "c21a9ca700764e4d51ec1f7a5a002ca8",
+  "path": "Offline/curtains_stepper",
+  "name": "curtains_stepper",
+  "content": "",
+  "created_at": "2023-05-25 20:25:29",
+  "updated_at": "2023-06-02 22:50:11",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "8784aeafcf443878f5ff7d3af3205804",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "210c17d24d854208b80a0d5dfb8c76ec": 1,
+        "3ec77201bbcd4ecd8722658d581a4e60": 3,
+        "71cfee506a4b4186a3595b6282f43f6e": 1,
+        "f5b1d9403e49471cab43bc5a1bec336f": 3,
+        "ee3c3d9ac73d4e99949bfda7f6c9666c": 1,
+        "b28b49fbe49d48089669d81fded9015a": 2
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "HDR-F-2.54_1x2",
+          3,
+          "HDR-F-2.54_1X2",
+          "5V_IN,12V_IN,12V_OUT",
+          {
+            "BOM_Supplier Part": "C49661",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "36b1306a115341f4b4d9407fb34974e0",
+            "uuid": "3ec77201bbcd4ecd8722658d581a4e60"
+          }
+        ],
+        [
+          "HEADER20X2",
+          1,
+          "HDR-TH_40P-P2.54-V-F-R2-C20-S2.54-2",
+          "HDR1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C9900003702",
+            "BOM_Manufacturer": "null",
+            "BOM_Manufacturer Part": "Header20X2",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "2f10db2197f2471cb8831b35330a1cff",
+            "uuid": "210c17d24d854208b80a0d5dfb8c76ec"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x4",
+          3,
+          "HDR-M-2.54_1X4",
+          "J1,LIGHT,OLED",
+          {
+            "BOM_Supplier Part": "C124378",
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "282f7786cb6144d097ae00194c3e3fb3",
+            "uuid": "f5b1d9403e49471cab43bc5a1bec336f"
+          }
+        ],
+        [
+          "EC11E152T40B",
+          1,
+          "SW-TH_EC11E152T40B",
+          "SW1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C1322541",
+            "BOM_Manufacturer": "ALPSALPINE",
+            "BOM_Manufacturer Part": "EC11E152T40B",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "40f91bd9c8c3437bbb2fcb23313e175e",
+            "uuid": "ee3c3d9ac73d4e99949bfda7f6c9666c"
+          }
+        ],
+        [
+          "CMI126603D08",
+          2,
+          "SW-TH_3P-L12.7-W5.6-P5.08",
+          "SW2,SW3",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C400256",
+            "BOM_Manufacturer": "Kailh(凯华)",
+            "BOM_Manufacturer Part": "CMI126603D08",
+            "BOM_JLCPCB Part Class": "Extended Part",
+            "puuid": "b235a674ca28404c92b589ff482631d3",
+            "uuid": "b28b49fbe49d48089669d81fded9015a"
+          }
+        ],
+        [
+          "A4988BREAKOUT",
+          1,
+          "A4988BREAKOUT",
+          "U4",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "018830ba7c924ce28f9b6f0b94bbcc4e",
+            "uuid": "71cfee506a4b4186a3595b6282f43f6e"
+          }
+        ]
+      ],
+      "updateTime": 1685742611,
+      "createTime": 1685042729,
+      "histories": [],
+      "created_at": "2023-05-25 20:25:29",
+      "updated_at": "2023-06-02 22:50:11"
+    },
+    {
+      "uuid": "650a9f4f0ef1e09981b82c9aa7a57d3f",
+      "puuid": "c21a9ca700764e4d51ec1f7a5a002ca8",
+      "title": "PCB_curtains_stepper",
+      "filename": "PCB_curtains_stepper.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "36b1306a115341f4b4d9407fb34974e0": 3,
+        "2f10db2197f2471cb8831b35330a1cff": 1,
+        "282f7786cb6144d097ae00194c3e3fb3": 2,
+        "8518549382494ff2bce85f3916f052e8": 1,
+        "857429e8959e486ab2e78d58e4b0ea59": 2,
+        "018830ba7c924ce28f9b6f0b94bbcc4e": 1
+      },
+      "BOM": [],
+      "updateTime": 1685212251,
+      "createTime": 1685212026,
+      "histories": [],
+      "created_at": "2023-05-27 19:27:06",
+      "updated_at": "2023-05-27 19:30:51"
+    }
+  ],
+  "sort": [],
+  "title": "curtains_stepper",
+  "foldername": "curtains_stepper",
+  "schfilename": "curtains_stepper.json",
+  "schfilemtime": 1685742611724
+}
