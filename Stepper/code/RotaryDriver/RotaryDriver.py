@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class rotaryDriver:
+class RotaryDriver:
     def __init__(self, rotaryPin1, rotaryPin2, buttonPin) -> None:
         self.rotaryPin1 = rotaryPin1
         self.rotaryPin2 = rotaryPin2
@@ -57,5 +57,3 @@ class rotaryDriver:
 
     def resetPos(self):
         self.pos = 0
-
-    def buttonRising(self):
