@@ -3,13 +3,15 @@ from CurtainState import CurtainState
 import RPi.GPIO as GPIO
 
 class MotorController:
-    def __init__(self, stepPin, dirPin, enablePin, ms1, ms2, ms3) -> None:
+    def __init__(self, stepPin, dirPin, enablePin, ms1, ms2, ms3, rst, slp) -> None:
         self.stepPin = stepPin
         self.dirPin = dirPin
         self.enablePin = enablePin
         self.ms1 = ms1
         self.ms2 = ms2
         self.ms3 = ms3
+        self.rst = rst
+        self.slp = slp
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(stepPin, GPIO.OUT)
