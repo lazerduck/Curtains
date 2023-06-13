@@ -1,6 +1,7 @@
 from CurtainState import CurtainState
 from MotorController import MotorController
 from RotaryDriver.RotaryDriver import RotaryDriver
+from Screen import Screen
 
 oledSCL = 5
 oledSDA = 3
@@ -9,6 +10,7 @@ light = 7
 motorController = MotorController(24, 26, 8, 10, 12, 16, 18, 22) # Need to check the actual pins
 state = CurtainState()
 RotaryDriver = RotaryDriver(28,32,36) # Need to check the actual pins
+screen = Screen(oledSCL, oledSDA, light)
 
 def loop():
     applyLightSensor()
