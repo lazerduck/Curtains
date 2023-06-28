@@ -15,11 +15,11 @@ class line:
         self.selected = sel
 
 class Screen:
-    line1 = "line1"
-    line2 = "line2"
-    line3 = "line3"
-    line4 = "line4"
-    selectedLine = 1
+    line1 = "POS"
+    line2 = ""
+    line3 = ""
+    line4 = ""
+    selectedLine = 0
     active = True
 
     def __init__(self):

@@ -13,7 +13,6 @@ class MotorController:
         self.rst = rst
         self.slp = slp
 
-        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(stepPin, GPIO.OUT)
         GPIO.setup(dirPin, GPIO.OUT)
         GPIO.setup(enablePin, GPIO.OUT)
