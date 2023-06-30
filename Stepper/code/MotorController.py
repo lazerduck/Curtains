@@ -19,13 +19,18 @@ class MotorController:
         GPIO.setup(ms1, GPIO.OUT)
         GPIO.setup(ms2, GPIO.OUT)
         GPIO.setup(ms3, GPIO.OUT)
+        GPIO.setup(slp, GPIO.OUT)
+        GPIO.setup(rst, GPIO.OUT)
 
         GPIO.output(enablePin, 1)
+        GPIO.output(slp, 1)
+        GPIO.output(rst, 1)
         GPIO.output(ms1, 0)
         GPIO.output(ms2, 0)
         GPIO.output(ms3, 0)
 
     def step(self, pulseLength):
+        GPIO.output(self.slp, 1)
         GPIO.output(self.stepPin, 1)
         time.sleep(pulseLength/2)
         GPIO.output(self.stepPin, 0)
@@ -39,4 +44,7 @@ class MotorController:
 
     def setDirection(self, direction):
         GPIO.output(self.dirPin, direction)
+
+    def sleep(self):
+        GPIO.output(self.slp, 0)
         

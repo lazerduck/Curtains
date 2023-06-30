@@ -7,7 +7,7 @@ from Screen import Screen
 from threading import Thread
 import time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 pins = Pins()
 
@@ -27,6 +27,7 @@ def motorLoop():
             motorController.step(state.speed)
             state.position -= 1
         else:
+            motorController.sleep()
             time.sleep(0.01)
 
 def controlLoop():
