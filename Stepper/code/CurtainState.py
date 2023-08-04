@@ -12,7 +12,7 @@ class CurtainState:
         self.openLimit = 0
         self.closeLimit = 10000
         self.isLightSensorEnabled = True
-        self.isCalibrated = False
+        self.isCalibrated = True
 
     def defaultEvent(self):
         pass
@@ -24,10 +24,10 @@ class CurtainState:
         self.position = self.closeLimit
 
     def canOpen(self):
-        return self.position > self.openLimit and self.isEnabled and self.isCalibrated
+        return self.position > self.openLimit and self.isCalibrated
     
     def canClose(self):
-        return self.position < self.closeLimit and self.isEnabled and self.isCalibrated
+        return self.position < self.closeLimit and self.isCalibrated
     
     def shouldOpenIfLight(self):
         return not self.isNight and self.canOpen() and datetime.now().time() > self.allowOpeningFrom
