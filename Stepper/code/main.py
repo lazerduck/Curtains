@@ -29,6 +29,7 @@ def motorLoop():
             state.position -= 1
             print("step right")
         else:
+            motorController.sleep()
             time.sleep(0.01)
             print("skip step")
 

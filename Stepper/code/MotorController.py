@@ -21,6 +21,8 @@ class MotorController:
         GPIO.setup(ms1, GPIO.OUT)
         GPIO.setup(ms2, GPIO.OUT)
         GPIO.setup(ms3, GPIO.OUT)
+        GPIO.setup(slp, GPIO.OUT)
+        GPIO.setup(rst, GPIO.OUT)
 
         GPIO.output(enablePin, 1)
         GPIO.output(slp, 1)
@@ -30,6 +32,7 @@ class MotorController:
         GPIO.output(ms3, 0)
 
     def step(self, pulseLength):
+        GPIO.output(self.slp, 1)
         GPIO.output(self.stepPin, 1)
         time.sleep(pulseLength/2)
         GPIO.output(self.stepPin, 0)
@@ -48,4 +51,7 @@ class MotorController:
         GPIO.output(self.rst, 0)
         time.sleep(0.01)
         GPIO.output(self.rst, 1)
+        
+    def sleep(self):
+        GPIO.output(self.slp, 0)
         
