@@ -10,7 +10,7 @@ class CurtainState:
         self.mustCloseBy = time(21,0,0)
         self.isNight = True
         self.openLimit = 0
-        self.closeLimit = 100
+        self.closeLimit = 10000
         self.isLightSensorEnabled = True
 
     def defaultEvent(self):
@@ -23,10 +23,10 @@ class CurtainState:
         self.position = self.closeLimit
 
     def canOpen(self):
-        return self.position > self.openLimit and self.isEnabled # get these limits
+        return self.position > self.openLimit # get these limits
     
     def canClose(self):
-        return self.position < self.closeLimit and self.isEnabled # get these limits
+        return self.position < self.closeLimit # get these limits
     
     def shouldOpenIfLight(self):
         return not self.isNight and self.canOpen() and datetime.now().time() > self.allowOpeningFrom
