@@ -13,7 +13,7 @@ GPIO.setmode(GPIO.BCM)
 
 pins = Pins()
 state = CurtainState()
-physicalInput = PhysicalInput(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get(), pins.buttonL.get(), pins.buttonR.get())
+RotaryDriver = RotaryDriver(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get())
 motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 screen = Screen()
 
