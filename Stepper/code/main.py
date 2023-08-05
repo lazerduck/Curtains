@@ -22,13 +22,14 @@ def motorLoop():
         motorController.update()
 
 def controlLoop():
-    print('loop')
-    if keyboard.is_pressed('q'):  # if key 'q' is pressed 
-        print('key')
-        physicalInput.rotaryDriver.pos += 1
-    state.setTargetPosition(physicalInput.getRotaryPos())
-    screen.line2 = str(state.position)
-    time.sleep(0.01)
+    while True:
+        print('loop')
+        if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+            print('key')
+            physicalInput.rotaryDriver.pos += 1
+        state.setTargetPosition(physicalInput.getRotaryPos())
+        screen.line2 = str(state.position)
+        time.sleep(0.01)
 
 
 motorThread = Thread(target = motorLoop)
