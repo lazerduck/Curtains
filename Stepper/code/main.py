@@ -5,8 +5,6 @@ from MotorController import MotorController
 from Screen import Screen
 from threading import Thread
 import time
-import keyboard
-
 from PhysicalInput import PhysicalInput
 
 GPIO.setmode(GPIO.BCM)

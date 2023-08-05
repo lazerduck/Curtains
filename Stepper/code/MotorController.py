@@ -39,6 +39,9 @@ class MotorController:
         GPIO.output(self.stepPin, 0)
         time.sleep(pulseLength/2)
 
+    def getStep(self):
+        return GPIO.input(self.stepPin)
+
     def enable(self):
         GPIO.output(self.enablePin, 0)
 
