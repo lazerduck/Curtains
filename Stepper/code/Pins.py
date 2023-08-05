@@ -29,3 +29,5 @@ class Pins:
         self.rotaryA = pinData(19, 10)
         self.rotaryB = pinData(21, 9)
         self.rotaryButton = pinData(36, 16)
+        self.btnL = pinData(38, 20)
+        self.btnR = pinData(40, 21)

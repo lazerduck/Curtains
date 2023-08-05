@@ -7,31 +7,22 @@ from Screen import Screen
 from threading import Thread
 import time
 
+from PhysicalInput import PhysicalInput
+
 GPIO.setmode(GPIO.BCM)
 
 pins = Pins()
-
-motorController = MotorController(pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 state = CurtainState()
-RotaryDriver = RotaryDriver(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get())
+physicalInput = PhysicalInput(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get(), pins.buttonL.get(), pins.buttonR.get())
+motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 screen = Screen()
 
 def motorLoop():
     while True:
-        if state.targetPosition > state.position and state.canClose():
-            motorController.setDirection(1)
-            motorController.step(state.speed)
-            state.position += 1
-        elif state.targetPosition < state.position and state.canOpen():
-            motorController.setDirection(0)
-            motorController.step(state.speed)
-            state.position -= 1
-        else:
-            motorController.sleep()
-            time.sleep(0.01)
+        motorController.update()
 
 def controlLoop():
-    state.setTargetPosition(RotaryDriver.pos)
+    state.setTargetPosition(physicalInput.getRotation())
     screen.line2 = str(state.position)
     time.sleep(0.01)
 

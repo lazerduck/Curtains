@@ -3,7 +3,8 @@ from CurtainState import CurtainState
 import RPi.GPIO as GPIO
 
 class MotorController:
-    def __init__(self, stepPin, dirPin, enablePin, ms1, ms2, ms3, rst, slp) -> None:
+    def __init__(self, state: CurtainState, stepPin, dirPin, enablePin, ms1, ms2, ms3, rst, slp) -> None:
+        self.state = state
         self.stepPin = stepPin
         self.dirPin = dirPin
         self.enablePin = enablePin
@@ -47,4 +48,17 @@ class MotorController:
 
     def sleep(self):
         GPIO.output(self.slp, 0)
+
+    def update(self):
+        if self.state.targetPosition > self.state.position and self.state.canClose():
+            self.setDirection(1)
+            self.step(self.state.speed)
+            self.state.position += 1
+        elif self.state.targetPosition < self.state.position and self.state.canOpen():
+            self.setDirection(0)
+            self.step(self.state.speed)
+            self.state.position -= 1
+        else:
+            self.sleep()
+            time.sleep(0.01)
         
