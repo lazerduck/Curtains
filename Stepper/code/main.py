@@ -5,6 +5,7 @@ from MotorController import MotorController
 from Screen import Screen
 from threading import Thread
 import time
+import keyboard
 
 from PhysicalInput import PhysicalInput
 
@@ -21,6 +22,9 @@ def motorLoop():
         motorController.update()
 
 def controlLoop():
+    if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+        print('key')
+        physicalInput.rotaryDriver.pos += 1
     state.setTargetPosition(physicalInput.getRotation())
     screen.line2 = str(state.position)
     time.sleep(0.01)
