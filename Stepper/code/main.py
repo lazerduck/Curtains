@@ -2,7 +2,6 @@ from CurtainState import CurtainState
 from Pins import Pins
 from RPi import GPIO
 from MotorController import MotorController
-from RotaryDriver.RotaryDriver import RotaryDriver
 from Screen import Screen
 from threading import Thread
 import time
@@ -13,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 
 pins = Pins()
 state = CurtainState()
-RotaryDriver = RotaryDriver(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get())
+physicalInput = PhysicalInput(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get(), pins.buttonL.get(), pins.buttonR.get())
 motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 screen = Screen()
 
