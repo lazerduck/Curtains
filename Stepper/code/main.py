@@ -25,7 +25,7 @@ def controlLoop():
     if keyboard.is_pressed('q'):  # if key 'q' is pressed 
         print('key')
         physicalInput.rotaryDriver.pos += 1
-    state.setTargetPosition(physicalInput.getRotation())
+    state.setTargetPosition(physicalInput.getRotaryPos())
     screen.line2 = str(state.position)
     time.sleep(0.01)
 
