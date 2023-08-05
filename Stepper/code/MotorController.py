@@ -13,6 +13,7 @@ class MotorController:
         self.ms3 = ms3
         self.rst = rst
         self.slp = slp
+        self.speed = 0.1
 
         GPIO.setup(stepPin, GPIO.OUT)
         GPIO.setup(dirPin, GPIO.OUT)
@@ -35,9 +36,12 @@ class MotorController:
     def step(self, pulseLength):
         GPIO.output(self.slp, 1)
         GPIO.output(self.stepPin, 1)
-        time.sleep(pulseLength/2)
+        time.sleep(self.speed/2)
         GPIO.output(self.stepPin, 0)
-        time.sleep(pulseLength/2)
+        time.sleep(self.speed/2)
+        self.speed -= (self.speed - pulseLength) / 10
+        self.speed = min(pulseLength, self.speed)
+        print(self.speed)
 
     def getStep(self):
         return GPIO.input(self.stepPin)
@@ -71,4 +75,5 @@ class MotorController:
         else:
             self.sleep()
             time.sleep(0.01)
+            self.speed = 0.1
         
