@@ -22,6 +22,7 @@ def motorLoop():
         motorController.update()
 
 def controlLoop():
+    print('loop')
     if keyboard.is_pressed('q'):  # if key 'q' is pressed 
         print('key')
         physicalInput.rotaryDriver.pos += 1
