@@ -23,10 +23,7 @@ def motorLoop():
 
 def controlLoop():
     while True:
-        if keyboard.is_pressed('left'):  # if key 'q' is pressed 
-            print('key')
-            physicalInput.rotaryDriver.pos += 1
-        state.setTargetPosition(physicalInput.getRotaryPos())
+        state.setTargetPosition(physicalInput.getRotaryPos()*100)
         screen.line2 = str(state.position)
         time.sleep(0.01)
 
