@@ -40,7 +40,7 @@ class MotorController:
         GPIO.output(self.stepPin, 0)
         time.sleep(self.speed/2)
         self.speed -= (self.speed - pulseLength) / 100
-        self.speed = min(pulseLength, self.speed)
+        self.speed = max(pulseLength, self.speed)
         print(self.speed)
 
     def getStep(self):
