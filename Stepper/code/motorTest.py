@@ -36,9 +36,9 @@ class StepperMotor:
         GPIO.output(self.dir_pin, clockwise)
         for i in range(steps):
             GPIO.output(self.step_pin, GPIO.HIGH)
-            sleep(self.delay)
+            time.sleep(self.delay)
             GPIO.output(self.step_pin, GPIO.LOW)
-            sleep(self.delay)
+            time.sleep(self.delay)
 
 
 GPIO.setmode(GPIO.BCM)
