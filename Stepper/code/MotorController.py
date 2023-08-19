@@ -13,7 +13,7 @@ class MotorController:
         self.ms3 = ms3
         self.rst = rst
         self.slp = slp
-        self.speed = 0.1
+        self.speed = state.startSpeed
 
         GPIO.setup(stepPin, GPIO.OUT)
         GPIO.setup(dirPin, GPIO.OUT)
@@ -75,5 +75,5 @@ class MotorController:
         else:
             self.sleep()
             time.sleep(0.01)
-            self.speed = 0.1
+            self.speed = self.state.startSpeed
         

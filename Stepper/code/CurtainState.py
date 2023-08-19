@@ -3,7 +3,9 @@ class CurtainState:
     def __init__(self) -> None:
         self.position = 0
         self.targetPosition = 0
-        self.speed = 0.03
+        self.speed = 0.1
+        self.startSpeed = 0.1
+        self.stepMultiplier = 10
         self.allowOpeningFrom = time(6,0,0)
         self.mustOpenBy = time(10,0,0)
         self.allowClosingFrom = time(15,0,0)
