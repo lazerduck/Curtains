@@ -36,3 +36,9 @@ class PhysicalInput:
     def resetRotaryPos(self):
         self.rotaryDriver.resetPos()
 
+    def setClockwiseEvent(self, event):
+        self.rotaryDriver.clockwiseEvent = event
+
+    def setAntiClockwiseEvent(self, event):
+        self.rotaryDriver.anticlockwiseEvent = event
+

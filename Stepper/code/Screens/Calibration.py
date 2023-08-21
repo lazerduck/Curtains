@@ -1,9 +1,10 @@
-from RotaryDriver.RotaryDriver import RotaryDriver
-from Screen import Screen
-from CurtainState import CurtainState
+from ScreenBase import ScreenBase
+import CurtainState
 
-class Calibration:
-    def __init__(self, state:CurtainState, screen: Screen,  ) -> None:
+
+class Calibration(ScreenBase):
+    def __init__(self) -> None:
+        self.state = CurtainState.CurtainState()
         pass
 
     def start(self):

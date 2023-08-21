@@ -1,4 +1,14 @@
 from datetime import time, datetime
+
+def singleton(cls):
+    instances = {}
+    def getInstance():
+        if cls not in instances:
+            instances[cls] = cls()
+        return instances[cls]
+    return getInstance
+
+@singleton
 class CurtainState:
     def __init__(self) -> None:
         self.position = 0
