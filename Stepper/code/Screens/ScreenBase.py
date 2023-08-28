@@ -1,4 +1,7 @@
 class ScreenBase:
+    def __init__(self) -> None:
+        pass
+        
     def leftButtonEvent(self):
         pass
 
