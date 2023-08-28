@@ -7,7 +7,7 @@ from threading import Thread
 import time
 from PhysicalInput import PhysicalInput
 # from Screens.ScreenInterpreter import ScreenInterpreter
-from Screens.MainScreen import MainScreen
+# from Screens.MainScreen import MainScreen
 
 GPIO.setmode(GPIO.BCM)
 
