@@ -1,4 +1,4 @@
-from Screen import Screen
+from ..Screen import Screen
 from PhysicalInput import PhysicalInput
 from ScreenBase import ScreenBase
 
