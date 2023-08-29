@@ -4,6 +4,8 @@ from RPi import GPIO
 from MotorController import MotorController
 from threading import Thread
 
+GPIO.setmode(GPIO.BCM)
+
 pins = Pins()
 state = CurtainState.CurtainState()
 motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
