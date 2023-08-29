@@ -6,7 +6,7 @@ from MotorDriver.MotorDriver import MotorDriver
 class MotorController:
     def __init__(self, state: CurtainState, stepPin, dirPin, enablePin, ms1, ms2, ms3, rst, slp) -> None:
         self.state = state
-        self.driver = MotorDriver(stepPin, dirPin, (ms1, ms2, ms3), '1/8', state.speed)
+        self.driver = MotorDriver(stepPin, dirPin, (ms1, ms2, ms3), '1/16', state.speed)
         self.enablePin = enablePin
         self.rst = rst
         self.slp = slp
