@@ -7,12 +7,15 @@ class MainScreen(ScreenBase):
         self.selectedLine = 2
         self.setScreen = setScreen
 
+        def back():
+            self.setScreen(self)
+
     def rightButtonEvent(self):
         if self.selectedLine == 2:
             # change to the calibration screen
             pass
         if self.selectedLine == 3:
-            self.setScreen(ManualControlScreen(self.setScreen))
+            self.setScreen(ManualControlScreen(self.setScreen, self.back))
             # change to the manual control screen
         pass
     
