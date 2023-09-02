@@ -23,4 +23,4 @@ class ScreenBase:
         return self.lines
 
     def getSelectedLine(self):
-        0
+        return self.selectedLine
