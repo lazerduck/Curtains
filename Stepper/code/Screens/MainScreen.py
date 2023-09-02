@@ -12,6 +12,7 @@ class MainScreen(ScreenBase):
         pass
     
     def rotaryClockwiseEvent(self):
+        print("rotaryClockwiseEvent")
         self.selectedLine = self.selectedLine + 1
         if self.selectedLine > 4:
             self.selectedLine = 2
