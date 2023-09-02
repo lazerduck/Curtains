@@ -27,6 +27,7 @@ def motorLoop():
 def controlLoop():
     while True:
         state.setTargetPosition(physicalInput.getRotaryPos()*state.stepMultiplier)
+        screen.line2 = "Pos: " + str(state.position)
         time.sleep(0.01)
 
 
