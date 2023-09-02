@@ -16,7 +16,7 @@ class MainScreen(ScreenBase):
             # change to the calibration screen
             pass
         if self.selectedLine == 3:
-            self.setScreen(ManualControlScreen(self.setScreen, lambda: self.back))
+            self.setScreen(ManualControlScreen(self.setScreen, lambda: self.back()))
             # change to the manual control screen
         pass
     
