@@ -29,6 +29,7 @@ def controlLoop():
         state.setTargetPosition(physicalInput.getRotaryPos()*state.stepMultiplier)
         # screen.line2 = "Target: " + str(state.targetPosition)
         # screen.line3 = "Pos: " + str(state.position)
+        screenInterpreter.update()
         time.sleep(0.01)
 
 
