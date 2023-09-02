@@ -51,7 +51,6 @@ class Screen:
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
         if(self.active):
-            print(str(self.selectedLine))
             lines = self.getLines()
             offset = 0
             
