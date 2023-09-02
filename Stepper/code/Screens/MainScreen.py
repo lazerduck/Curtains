@@ -11,6 +11,7 @@ class MainScreen(ScreenBase):
             self.setScreen(self)
 
     def rotaryButtonEvent(self):
+        print("rotaryButtonEvent")
         if self.selectedLine == 2:
             # change to the calibration screen
             pass
