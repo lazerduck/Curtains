@@ -36,10 +36,10 @@ class CurtainState:
         self.position = self.closeLimit
 
     def canOpen(self):
-        return self.position > self.openLimit and self.isCalibrated
+        return True # self.position > self.openLimit and self.isCalibrated
     
     def canClose(self):
-        return self.position < self.closeLimit and self.isCalibrated
+        return True # self.position < self.closeLimit and self.isCalibrated
     
     def shouldOpenIfLight(self):
         return not self.isNight and self.canOpen() and datetime.now().time() > self.allowOpeningFrom
