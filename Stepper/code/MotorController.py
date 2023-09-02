@@ -33,12 +33,16 @@ class MotorController:
     def sleep(self):
         GPIO.output(self.slp, 0)
 
+    def wake(self):
+        GPIO.output(self.slp, 1)
+
     def update(self):
         if self.state.targetPosition > self.state.position and self.state.canClose():
-            print("Stepping")
+            self.wake()
             self.driver.step(16, 1)
             self.state.position += 1
         elif self.state.targetPosition < self.state.position and self.state.canOpen():
+            self.wake()
             self.driver.step(16, 0)
             self.state.position -= 1
         else:
