@@ -6,7 +6,7 @@ class ScreenInterpreter:
     def __init__(self, screen:Screen, physicalInput:PhysicalInput) -> None:
         self.screen = screen
         self.physicalInput = physicalInput
-        self.currentScreen = ScreenBase()
+        self.currentScreen = ScreenBase(self.setScreen)
 
     def setScreen(self, screen:ScreenBase):
         self.currentScreen = screen

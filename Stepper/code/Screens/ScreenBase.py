@@ -1,7 +1,8 @@
 class ScreenBase:
-    def __init__(self) -> None:
+    def __init__(self, setScreen) -> None:
         self.lines = ["", "", "", ""]
         self.selectedLine = 0
+        self.setScreen = setScreen
         pass
         
     def leftButtonEvent(self):
