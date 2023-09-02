@@ -38,7 +38,6 @@ class MotorDriver:
         self.updateStepAndDelay()
 
     def step(self, steps, clockwise):
-        print("Stepping " + str(steps) + " steps " + ("clockwise" if clockwise else "anticlockwise"))
         GPIO.output(self.dir_pin, clockwise)
         for i in range(steps):
             GPIO.output(self.step_pin, GPIO.HIGH)
