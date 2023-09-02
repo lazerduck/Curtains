@@ -1,18 +1,22 @@
 from .ScreenBase import ScreenBase
+from .ManualControlScreen import ManualControlScreen
 
 class MainScreen(ScreenBase):
-    def __init__(self):
-        self.lines = ["Main", "Calibrate", "", ""]
+    def __init__(self, setScreen):
+        self.lines = ["Main", "Calibrate", "Manual", ""]
         self.selectedLine = 2
+        self.setScreen = setScreen
 
     def rightButtonEvent(self):
         if self.selectedLine == 2:
             # change to the calibration screen
             pass
+        if self.selectedLine == 3:
+            self.setScreen(ManualControlScreen(self.setScreen))
+            # change to the manual control screen
         pass
     
     def rotaryAnticlockwiseEvent(self):
-        print("rotaryClockwiseEvent")
         self.selectedLine = self.selectedLine + 1
         if self.selectedLine > 4:
             self.selectedLine = 2
