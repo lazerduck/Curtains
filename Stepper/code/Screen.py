@@ -40,6 +40,7 @@ class Screen:
         self.bottom = self.height-padding
         self.x = 0
         self.font = ImageFont.load_default()
+        self.selectedLine = 0
         self.drawText()
         print("Screen started")
 
