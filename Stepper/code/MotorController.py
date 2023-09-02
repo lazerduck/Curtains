@@ -34,7 +34,7 @@ class MotorController:
         GPIO.output(self.slp, 0)
 
     def update(self):
-        print("loop")
+        print(str(self.state.position) + " " + str(self.state.targetPosition) + " " + str(self.state.canClose()) + " " + str(self.state.canOpen()))
         if self.state.targetPosition > self.state.position and self.state.canClose():
             self.driver.step(10, 1)
             self.state.position += 1
