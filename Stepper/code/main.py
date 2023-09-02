@@ -17,7 +17,7 @@ physicalInput = PhysicalInput(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotar
 motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 screen = Screen()
 screenInterpreter = ScreenInterpreter(screen, physicalInput)
-screenInterpreter.setScreen(MainScreen())
+screenInterpreter.setScreen(MainScreen(screenInterpreter.setScreen))
 
 
 def motorLoop():
