@@ -13,7 +13,7 @@ class CurtainState:
     def __init__(self) -> None:
         self.position = 0
         self.targetPosition = 0
-        self.speed = 0.0001
+        self.speed = 0.001
         self.startSpeed = 0.01
         self.stepMultiplier = 10
         self.allowOpeningFrom = time(6,0,0)

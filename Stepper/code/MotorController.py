@@ -34,12 +34,12 @@ class MotorController:
         GPIO.output(self.slp, 0)
 
     def update(self):
-        print(str(self.state.position) + " " + str(self.state.targetPosition) + " " + str(self.state.canClose()) + " " + str(self.state.canOpen()))
         if self.state.targetPosition > self.state.position and self.state.canClose():
-            self.driver.step(10, 1)
+            print("Stepping")
+            self.driver.step(16, 1)
             self.state.position += 1
         elif self.state.targetPosition < self.state.position and self.state.canOpen():
-            self.driver.step(10, 0)
+            self.driver.step(16, 0)
             self.state.position -= 1
         else:
             self.sleep()
