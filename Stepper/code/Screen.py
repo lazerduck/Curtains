@@ -51,11 +51,11 @@ class Screen:
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
         if(self.active):
+            print(str(self.selectedLine))
             lines = self.getLines()
             offset = 0
             
             for line in lines:
-                print(line.text, str(line.selected))
                 if(line.selected):
                     self.draw.rectangle((0, self.top + offset + 1, self.width,self.top + offset + 10), outline=0, fill=255)
                 self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
