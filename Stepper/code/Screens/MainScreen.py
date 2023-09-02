@@ -6,6 +6,7 @@ class MainScreen(ScreenBase):
         self.lines = ["Main", "Calibrate", "Manual", ""]
         self.selectedLine = 2
         self.setScreen = setScreen
+        self.back = back
 
         def back():
             self.setScreen(self)
