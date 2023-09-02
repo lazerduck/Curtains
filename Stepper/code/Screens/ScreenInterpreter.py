@@ -1,6 +1,6 @@
 from Screen import Screen
 from PhysicalInput import PhysicalInput
-from ScreenBase import ScreenBase
+from .ScreenBase import ScreenBase
 
 class ScreenInterpreter:
     def __init__(self, screen:Screen, physicalInput:PhysicalInput) -> None:
