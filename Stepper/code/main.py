@@ -6,8 +6,8 @@ from Screen import Screen
 from threading import Thread
 import time
 from PhysicalInput import PhysicalInput
-# from Screens.ScreenInterpreter import ScreenInterpreter
-# from Screens.MainScreen import MainScreen
+from Screens.ScreenInterpreter import ScreenInterpreter
+from Screens.MainScreen import MainScreen
 
 GPIO.setmode(GPIO.BCM)
 
@@ -16,8 +16,8 @@ state = CurtainState.CurtainState()
 physicalInput = PhysicalInput(pins.rotaryA.get(), pins.rotaryB.get(), pins.rotaryButton.get(), pins.btnL.get(), pins.btnR.get())
 motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.enable.get(), pins.m0.get(), pins.m1.get(), pins.m2.get(), pins.reset.get(), pins.sleep.get())
 screen = Screen()
-# screenInterpreter = ScreenInterpreter(screen, physicalInput)
-# screenInterpreter.setScreen(MainScreen())
+screenInterpreter = ScreenInterpreter(screen, physicalInput)
+#screenInterpreter.setScreen(MainScreen())
 
 
 def motorLoop():
