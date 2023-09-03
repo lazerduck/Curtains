@@ -23,7 +23,7 @@ class ManualControlScreen(ScreenBase):
             if self.selectedLine > 4:
                 self.selectedLine = 2
         else:
-            self.curtainState.setTargetPosition((self.curtainState.position+1) *self.curtainState.stepMultiplier)
+            self.curtainState.setTargetPosition(self.curtainState.position + (1 * self.curtainState.stepMultiplier))
             self.lines[3] = "pos: " + str(self.curtainState.position)
 
     
@@ -33,5 +33,5 @@ class ManualControlScreen(ScreenBase):
             if self.selectedLine < 2:
                 self.selectedLine = 4
         else:
-            self.curtainState.setTargetPosition((self.curtainState.position-1) *self.curtainState.stepMultiplier)
+            self.curtainState.setTargetPosition(self.curtainState.position - (1 * self.curtainState.stepMultiplier))
             self.lines[3] = "pos: " + str(self.curtainState.position)
