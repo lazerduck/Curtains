@@ -7,8 +7,8 @@ class MainScreen(ScreenBase):
         self.selectedLine = 2
         self.setScreen = setScreen
 
-        def back():
-            self.setScreen(self)
+    def back(self):
+        self.setScreen(self)
 
     def rotaryButtonEvent(self):
         print("rotaryButtonEvent")
