@@ -54,10 +54,11 @@ class CurtainState:
         return self.canClose() and datetime.now().time() > self.mustCloseBy
     
     def setTargetPosition(self, targetPosition):
-        if targetPosition < self.openLimit:
-            targetPosition = self.openLimit
-        if targetPosition > self.closeLimit:
-            targetPosition = self.closeLimit
+        if self.isCalibrated:
+            if targetPosition < self.openLimit:
+                targetPosition = self.openLimit
+            if targetPosition > self.closeLimit:
+                targetPosition = self.closeLimit
         self.targetPosition = targetPosition
 
     def setNight(self, isNight):
