@@ -16,16 +16,16 @@ class Calibration(ScreenBase):
 
     def rotaryButtonEvent(self):
         if(self.selectedLine == 2):
-            if(self.isSettingOpen):
+            self.isSettingOpen = not self.isSettingOpen
+            if(not self.isSettingOpen):
                 self.state.openLimit = self.state.position
                 self.isOpenSet = True
-            self.isSettingOpen = not self.isSettingOpen
 
         if(self.selectedLine == 3):
-            if(self.isSettingClose):
+            self.isSettingClose = not self.isSettingClose
+            if(not self.isSettingClose):
                 self.state.closeLimit = self.state.position
                 self.isCloseSet = True
-            self.isSettingClose = not self.isSettingClose
 
         if(self.isOpenSet and self.isCloseSet):
             self.state.isCalibrated = True
