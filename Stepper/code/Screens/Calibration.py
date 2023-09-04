@@ -1,4 +1,4 @@
-from ScreenBase import ScreenBase
+from .ScreenBase import ScreenBase
 import CurtainState
 
 
