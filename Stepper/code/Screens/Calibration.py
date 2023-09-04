@@ -34,7 +34,7 @@ class Calibration(ScreenBase):
             self.back()
 
     def rotaryAnticlockwiseEvent(self):
-        if(not self.isSettingOpen or self.isSettingClose):
+        if(not self.isSettingOpen or not self.isSettingClose):
             self.selectedLine = self.selectedLine + 1
             if self.selectedLine > 4:
                 self.selectedLine = 2
@@ -44,7 +44,7 @@ class Calibration(ScreenBase):
 
     
     def rotaryClockwiseEvent(self):
-        if(not self.isSettingOpen or self.isSettingClose):
+        if(not self.isSettingOpen or not self.isSettingClose):
             self.selectedLine = self.selectedLine - 1
             if self.selectedLine < 2:
                 self.selectedLine = 4
