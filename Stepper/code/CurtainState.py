@@ -1,4 +1,6 @@
 from datetime import time, datetime
+import os.path
+import atexit
 
 def singleton(cls):
     instances = {}
@@ -25,6 +27,53 @@ class CurtainState:
         self.closeLimit = 100000
         self.isLightSensorEnabled = True
         self.isCalibrated = True
+        self.loadStoredState()
+        atexit.register(self.saveState)
+
+
+    def loadStoredState(self):
+        if not os.path.isfile("state.txt"):
+            return
+        
+        file = open("state.txt", "r")
+
+        self.position = int(file.readline())
+        self.targetPosition = int(file.readline())
+        self.speed = float(file.readline())
+        self.startSpeed = float(file.readline())
+        self.stepMultiplier = int(file.readline())
+        self.allowOpeningFrom = time.fromisoformat(file.readline())
+        self.mustOpenBy = time.fromisoformat(file.readline())
+        self.allowClosingFrom = time.fromisoformat(file.readline())
+        self.mustCloseBy = time.fromisoformat(file.readline())
+        self.isNight = bool(file.readline())
+        self.openLimit = int(file.readline())
+        self.closeLimit = int(file.readline())
+        self.isLightSensorEnabled = bool(file.readline())
+        self.isCalibrated = bool(file.readline())
+
+        file.close()
+
+    def saveState(self):
+        file = open("state.txt", "w")
+
+        file.write(str(self.position) + "\n")
+        file.write(str(self.targetPosition) + "\n")
+        file.write(str(self.speed) + "\n")
+        file.write(str(self.startSpeed) + "\n")
+        file.write(str(self.stepMultiplier) + "\n")
+        file.write(self.allowOpeningFrom.isoformat() + "\n")
+        file.write(self.mustOpenBy.isoformat() + "\n")
+        file.write(self.allowClosingFrom.isoformat() + "\n")
+        file.write(self.mustCloseBy.isoformat() + "\n")
+        file.write(str(self.isNight) + "\n")
+        file.write(str(self.openLimit) + "\n")
+        file.write(str(self.closeLimit) + "\n")
+        file.write(str(self.isLightSensorEnabled) + "\n")
+        file.write(str(self.isCalibrated) + "\n")
+
+        file.close()
+
 
     def defaultEvent(self):
         pass
