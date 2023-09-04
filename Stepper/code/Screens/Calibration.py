@@ -40,6 +40,7 @@ class Calibration(ScreenBase):
                 self.selectedLine = 2
         else:
             self.state.setTargetPosition(self.state.position + (1 * self.state.stepMultiplier))
+            self.updateText()
 
     
     def rotaryClockwiseEvent(self):
@@ -49,6 +50,7 @@ class Calibration(ScreenBase):
                 self.selectedLine = 4
         else:
             self.state.setTargetPosition(self.state.position - (1 * self.state.stepMultiplier))
+            self.updateText()
 
     def updateText(self):
         if(self.isSettingOpen):

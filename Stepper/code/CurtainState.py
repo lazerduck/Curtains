@@ -15,14 +15,14 @@ class CurtainState:
         self.targetPosition = 0
         self.speed = 0.0001
         self.startSpeed = 0.01
-        self.stepMultiplier = 100
+        self.stepMultiplier = 150
         self.allowOpeningFrom = time(6,0,0)
         self.mustOpenBy = time(10,0,0)
         self.allowClosingFrom = time(15,0,0)
         self.mustCloseBy = time(21,0,0)
         self.isNight = True
-        self.openLimit = -10000
-        self.closeLimit = 10000
+        self.openLimit = -100000
+        self.closeLimit = 100000
         self.isLightSensorEnabled = True
         self.isCalibrated = True
 
