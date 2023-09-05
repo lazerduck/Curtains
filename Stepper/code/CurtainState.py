@@ -30,7 +30,6 @@ class CurtainState:
         self.loadStoredState()
         atexit.register(self.saveState)
 
-
     def loadStoredState(self):
         if not os.path.isfile("state.txt"):
             return
@@ -73,7 +72,6 @@ class CurtainState:
         file.write(str(self.isCalibrated) + "\n")
 
         file.close()
-
 
     def defaultEvent(self):
         pass

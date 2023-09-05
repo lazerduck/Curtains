@@ -3,7 +3,7 @@ from CurtainState import CurtainState
 
 class ControlScreen(ScreenBase):
     def __init__(self, setScreen, back) -> None:
-        self.lines = ["Control", "Open", "Close", "Pos"]
+        self.lines = ["Control", "Open", "Close", "Back"]
         self.selectedLine = 2
         self.isActivated = False
         self.state = CurtainState()
