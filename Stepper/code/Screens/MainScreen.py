@@ -18,7 +18,7 @@ class MainScreen(ScreenBase):
             self.setScreen(Calibration(self.back))
             pass
         if self.selectedLine == 3:
-            self.setScreen(ManualControlScreen(self.setScreen, lambda: self.back))
+            self.setScreen(ManualControlScreen(self.setScreen, self.back))
         if self.selectedLine == 4:
             self.setScreen(ControlScreen(self.setScreen, self.back))
         pass
