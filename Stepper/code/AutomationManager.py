@@ -10,6 +10,8 @@ class AutomationManager:
             if self.state.isNight and self.state.mustOpen():
                 self.state.setTargetPosition(self.state.openLimit)
                 self.state.setNight(False)
+                print("Opening")
             elif not self.state.isNight and self.state.mustClose():
                 self.state.setTargetPosition(self.state.closeLimit)
                 self.state.setNight(True)
+                print("Closing")

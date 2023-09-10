@@ -29,6 +29,7 @@ def motorLoop():
 def automationLoop():
     while True:
         automation.update()
+        time.sleep(60)
 
 def controlLoop():
     while True:
