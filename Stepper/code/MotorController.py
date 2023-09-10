@@ -6,7 +6,7 @@ from MotorDriver.MotorDriver import MotorDriver
 class MotorController:
     def __init__(self, state: CurtainState, stepPin, dirPin, enablePin, ms1, ms2, ms3, rst, slp) -> None:
         self.state = state
-        self.driver = MotorDriver(stepPin, dirPin, (ms1, ms2, ms3), '1/32', state.speed)
+        self.driver = MotorDriver(stepPin, dirPin, (ms1, ms2, ms3), '1/16', state.speed)
         self.enablePin = enablePin
         self.rst = rst
         self.slp = slp
@@ -39,11 +39,11 @@ class MotorController:
     def update(self):
         if self.state.targetPosition > self.state.position and self.state.canClose():
             self.wake()
-            self.driver.step(32, 1)
+            self.driver.step(16, 1)
             self.state.position += 1
         elif self.state.targetPosition < self.state.position and self.state.canOpen():
             self.wake()
-            self.driver.step(32, 0)
+            self.driver.step(16, 0)
             self.state.position -= 1
         else:
             self.sleep()
