@@ -92,7 +92,7 @@ class CurtainState:
         return not self.isNight and self.canOpen() and datetime.now().time() > self.allowOpeningFrom
 
     def mustOpen(self):
-        return self.canOpen() and datetime.now().time() > self.mustOpenBy
+        return self.canOpen() and datetime.now().time() > self.mustOpenBy and datetime.now().time() < self.allowClosingFrom
     
     def shouldCloseIfNight(self):
         return self.isNight and self.canClose() and datetime.now().time() > self.allowClosingFrom
