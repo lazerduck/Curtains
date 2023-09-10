@@ -8,6 +8,7 @@ import time
 from PhysicalInput import PhysicalInput
 from Screens.ScreenInterpreter import ScreenInterpreter
 from Screens.MainScreen import MainScreen
+from AutomationManager import AutomationManager
 
 GPIO.setmode(GPIO.BCM)
 
@@ -18,11 +19,16 @@ motorController = MotorController(state, pins.step.get(), pins.dir.get(), pins.e
 screen = Screen()
 screenInterpreter = ScreenInterpreter(screen, physicalInput)
 screenInterpreter.setScreen(MainScreen(screenInterpreter.setScreen))
+automation = AutomationManager(state)
 
 
 def motorLoop():
     while True:
         motorController.update()
+
+def automationLoop():
+    while True:
+        automation.update()
 
 def controlLoop():
     while True:
@@ -32,6 +38,8 @@ def controlLoop():
 
 motorThread = Thread(target = motorLoop)
 controlThread = Thread(target = controlLoop)
+automationThread = Thread(target = automationLoop)
 
 motorThread.start()
 controlThread.start()
+automationThread.start()
