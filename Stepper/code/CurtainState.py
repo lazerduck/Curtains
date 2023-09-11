@@ -21,8 +21,8 @@ class CurtainState:
         self.allowOpeningFrom = time(6,0,0)
         self.mustOpenBy = time(6,20,0)
         self.allowClosingFrom = time(15,0,0)
-        self.mustCloseBy = time(21,0,0)
-        self.isNight = True
+        self.mustCloseBy = time(19,30,0)
+        self.isNight = False
         self.openLimit = -100000
         self.closeLimit = 100000
         self.isLightSensorEnabled = True

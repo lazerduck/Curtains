@@ -9,6 +9,9 @@ from PhysicalInput import PhysicalInput
 from Screens.ScreenInterpreter import ScreenInterpreter
 from Screens.MainScreen import MainScreen
 from AutomationManager import AutomationManager
+from Server import webHandler
+from http.server import HTTPServer
+
 
 GPIO.setmode(GPIO.BCM)
 
@@ -44,3 +47,6 @@ automationThread = Thread(target = automationLoop)
 motorThread.start()
 controlThread.start()
 automationThread.start()
+
+server = HTTPServer(('192.168.2.152',8080), webHandler)
+server.serve_forever()
