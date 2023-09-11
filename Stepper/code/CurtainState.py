@@ -31,6 +31,7 @@ class CurtainState:
         atexit.register(self.saveState)
 
     def loadStoredState(self):
+        print(os.getcwd())
         if not os.path.isfile("state.txt"):
             return
         
