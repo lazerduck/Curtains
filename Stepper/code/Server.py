@@ -3,40 +3,44 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import datetime
 import json
 
+state = CurtainState()
+
 class webHandler(BaseHTTPRequestHandler):
-    state = CurtainState()
 
     def open(self):
-        self.state.setOpen()
+        state.setOpen()
+        return "Opening"
 
     def close(self):
-        self.state.setClosed()
+        state.setClosed()
+        return "Closing"
 
     def stop(self):
-        self.state.setTargetPosition(self.state.position)
+        state.setTargetPosition(state.position)
+        return "Stopping"
 
     def state(self):
         data = {
-            "position": self.state.position,
-            "targetPosition": self.state.targetPosition,
-            "speed": self.state.speed,
-            "startSpeed": self.state.startSpeed,
-            "stepMultiplier": self.state.stepMultiplier,
-            "allowOpeningFrom": self.state.allowOpeningFrom.isoformat(),
-            "mustOpenBy": self.state.mustOpenBy.isoformat(),
-            "allowClosingFrom": self.state.allowClosingFrom.isoformat(),
-            "mustCloseBy": self.state.mustCloseBy.isoformat(),
-            "isNight": self.state.isNight,
-            "openLimit": self.state.openLimit,
-            "closeLimit": self.state.closeLimit,
-            "isLightSensorEnabled": self.state.isLightSensorEnabled,
-            "isCalibrated": self.state.isCalibrated
+            "position": state.position,
+            "targetPosition": state.targetPosition,
+            "speed": state.speed,
+            "startSpeed": state.startSpeed,
+            "stepMultiplier": state.stepMultiplier,
+            "allowOpeningFrom": state.allowOpeningFrom.isoformat(),
+            "mustOpenBy": state.mustOpenBy.isoformat(),
+            "allowClosingFrom": state.allowClosingFrom.isoformat(),
+            "mustCloseBy": state.mustCloseBy.isoformat(),
+            "isNight": state.isNight,
+            "openLimit": state.openLimit,
+            "closeLimit": state.closeLimit,
+            "isLightSensorEnabled": state.isLightSensorEnabled,
+            "isCalibrated": state.isCalibrated
         }
 
         return json.dumps(data)
     
     def goTo(self, position):
-        self.state.setTargetPosition(position)
+        state.setTargetPosition(position)
     
     def do_GET(self):
         self.send_response(200)
@@ -51,6 +55,10 @@ class webHandler(BaseHTTPRequestHandler):
         }
 
         pathVals = list(filter(None, self.path.split("/")))
+        print(pathVals)
+        if(actions.get(pathVals[0].lower()) == None):
+            self.wfile.write(bytes("Invalid action", "utf-8"))
+            return
         data = actions[pathVals[0].lower()]()
         if isinstance(data, str):
             self.wfile.write(bytes(data, "utf-8"))
