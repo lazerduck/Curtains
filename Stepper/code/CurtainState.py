@@ -2,13 +2,17 @@ from datetime import time, datetime
 import os.path
 import atexit
 
+
 def singleton(cls):
     instances = {}
+
     def getInstance():
         if cls not in instances:
             instances[cls] = cls()
         return instances[cls]
+
     return getInstance
+
 
 @singleton
 class CurtainState:
@@ -18,13 +22,13 @@ class CurtainState:
         self.speed = 0.0001
         self.startSpeed = 0.01
         self.stepMultiplier = 150
-        self.allowOpeningFrom = time(6,0,0)
-        self.mustOpenBy = time(6,20,0)
-        self.allowClosingFrom = time(15,0,0)
-        self.mustCloseBy = time(19,30,0)
+        self.allowOpeningFrom = time(6, 0, 0)
+        self.mustOpenBy = time(6, 20, 0)
+        self.allowClosingFrom = time(15, 0, 0)
+        self.mustCloseBy = time(19, 30, 0)
         self.isNight = False
-        self.openLimit = -100000
-        self.closeLimit = 100000
+        self.openLimit = 0
+        self.closeLimit = 0
         self.isLightSensorEnabled = True
         self.isCalibrated = True
         self.loadStoredState()
@@ -34,11 +38,11 @@ class CurtainState:
         print(os.getcwd())
         if not os.path.isfile("state.txt"):
             return
-        
+
         file = open("state.txt", "r")
 
         self.position = int(file.readline())
-        self.targetPosition = int(file.readline())
+        self.targetPosition = self.position
         self.speed = float(file.readline())
         self.startSpeed = float(file.readline())
         self.stepMultiplier = int(file.readline())
@@ -58,7 +62,6 @@ class CurtainState:
         file = open("state.txt", "w")
 
         file.write(str(self.position) + "\n")
-        file.write(str(self.targetPosition) + "\n")
         file.write(str(self.speed) + "\n")
         file.write(str(self.startSpeed) + "\n")
         file.write(str(self.stepMultiplier) + "\n")
@@ -78,29 +81,41 @@ class CurtainState:
         pass
 
     def setOpen(self):
-        self.position = self.openLimit
+        self.targetPosition = self.openLimit
 
     def setClosed(self):
-        self.position = self.closeLimit
+        self.targetPosition = self.closeLimit
 
     def canOpen(self):
-        return True # self.position > self.openLimit and self.isCalibrated
-    
+        return True  # self.position > self.openLimit and self.isCalibrated
+
     def canClose(self):
-        return True # self.position < self.closeLimit and self.isCalibrated
-    
+        return True  # self.position < self.closeLimit and self.isCalibrated
+
     def shouldOpenIfLight(self):
-        return not self.isNight and self.canOpen() and datetime.now().time() > self.allowOpeningFrom
+        return (
+            not self.isNight
+            and self.canOpen()
+            and datetime.now().time() > self.allowOpeningFrom
+        )
 
     def mustOpen(self):
-        return self.canOpen() and datetime.now().time() > self.mustOpenBy and datetime.now().time() < self.allowClosingFrom
-    
+        return (
+            self.canOpen()
+            and datetime.now().time() > self.mustOpenBy
+            and datetime.now().time() < self.allowClosingFrom
+        )
+
     def shouldCloseIfNight(self):
-        return self.isNight and self.canClose() and datetime.now().time() > self.allowClosingFrom
-    
+        return (
+            self.isNight
+            and self.canClose()
+            and datetime.now().time() > self.allowClosingFrom
+        )
+
     def mustClose(self):
         return self.canClose() and datetime.now().time() > self.mustCloseBy
-    
+
     def setTargetPosition(self, targetPosition):
         if self.isCalibrated:
             if targetPosition < self.openLimit:
