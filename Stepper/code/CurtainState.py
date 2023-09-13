@@ -43,6 +43,7 @@ class CurtainState:
 
         self.position = int(file.readline())
         self.targetPosition = self.position
+        file.readline()
         self.speed = float(file.readline())
         self.startSpeed = float(file.readline())
         self.stepMultiplier = int(file.readline())
@@ -62,6 +63,7 @@ class CurtainState:
         file = open("state.txt", "w")
 
         file.write(str(self.position) + "\n")
+        file.write("0\n")
         file.write(str(self.speed) + "\n")
         file.write(str(self.startSpeed) + "\n")
         file.write(str(self.stepMultiplier) + "\n")
