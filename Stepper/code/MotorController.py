@@ -37,16 +37,17 @@ class MotorController:
         GPIO.output(self.slp, 1)
 
     def update(self):
-        if self.state.targetPosition > self.state.position and self.state.canClose():
-            self.wake()
-            self.driver.step(16, 1)
-            self.state.position += 1
-        elif self.state.targetPosition < self.state.position and self.state.canOpen():
-            self.wake()
-            self.driver.step(16, 0)
-            self.state.position -= 1
-        else:
-            self.sleep()
-            time.sleep(0.01)
-            self.speed = self.state.startSpeed
+        while True:
+            if self.state.targetPosition > self.state.position and self.state.canClose():
+                self.wake()
+                self.driver.step(16, 1)
+                self.state.position += 1
+            elif self.state.targetPosition < self.state.position and self.state.canOpen():
+                self.wake()
+                self.driver.step(16, 0)
+                self.state.position -= 1
+            else:
+                self.sleep()
+                time.sleep(0.01)
+                self.speed = self.state.startSpeed
         
