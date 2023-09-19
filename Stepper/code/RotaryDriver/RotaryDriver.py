@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from threading import Timer
 
 class RotaryDriver:
     def __init__(self, rotaryPin1, rotaryPin2, buttonPin) -> None:
@@ -10,6 +11,8 @@ class RotaryDriver:
         self.buttonEvent = self.defaultEvent
         self.clockwiseEvent = self.defaultEvent
         self.anticlockwiseEvent = self.defaultEvent
+
+        self.rotaryDriverDebounce = False
 
         GPIO.setup(rotaryPin1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(rotaryPin2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -28,8 +31,15 @@ class RotaryDriver:
         pass
 
     def buttonRising(self, e):
-        self.buttonEvent()
+        if(not self.rotaryDriverDebounce):
+            self.buttonEvent()
+            self.rotaryDriverDebounce = True
+            db = Timer(0.1, self.resetDebounce)
+
         
+    def resetDebounce(self):
+        self.rotaryDriverDebounce = False
+
     def rot(self):
         if self.state == 1:
             self.pos += 1 # Clockwise
