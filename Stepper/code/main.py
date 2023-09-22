@@ -35,7 +35,7 @@ motorController = MotorController(
     pins.reset.get(),
     pins.sleep.get(),
 )
-screen = Screen()
+screen = Screen(physicalInput)
 screenInterpreter = ScreenInterpreter(screen, physicalInput)
 screenInterpreter.setScreen(MainScreen(screenInterpreter.setScreen))
 automation = AutomationManager(state)
