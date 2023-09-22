@@ -52,7 +52,7 @@ class Screen:
     def drawText(self):
         # Draw a black filled box to clear the image.
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
-        if(self.timeSinceLastChange > 60):
+        if(self.timeSinceLastChange < 60):
             if(self.active):
                 lines = self.getLines()
                 offset = 0
