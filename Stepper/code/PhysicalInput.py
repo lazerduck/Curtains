@@ -9,14 +9,15 @@ class PhysicalInput:
 
         self.leftButtonEvent = self.defaultEvent
         self.rightButtonEvent = self.defaultEvent
+        self.anyEvent = self.defaultEvent
 
         GPIO.setup(buttonL, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(buttonR, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
         GPIO.add_event_detect(buttonL, GPIO.RISING, 
-            callback=self.leftButtonEvent)
+            callback=self.leftButtonEventWrapper)
         GPIO.add_event_detect(buttonR, GPIO.RISING, 
-            callback=self.rightButtonEvent)
+            callback=self.rightButtonEventWrapper)
 
     def defaultEvent(self, e):
         pass
@@ -41,4 +42,16 @@ class PhysicalInput:
 
     def setAntiClockwiseEvent(self, event):
         self.rotaryDriver.anticlockwiseEvent = event
+
+    def leftButtonEventWrapper(self, e):
+        self.anyEvent()
+        self.leftButtonEvent()
+    
+    def rightButtonEventWrapper(self, e):
+        self.anyEvent()
+        self.rightButtonEvent()
+
+    def setAnyEvent(self, event):
+        self.anyEvent = event
+        self.rotaryDriver.anyEvent = event
 

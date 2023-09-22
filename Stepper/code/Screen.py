@@ -5,6 +5,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 import threading
+from PhysicalInput import PhysicalInput
 
 class line:
     text = ""
@@ -22,7 +23,7 @@ class Screen:
     selectedLine = 0
     active = True
 
-    def __init__(self):
+    def __init__(self, physicalInput: PhysicalInput):
     # Raspberry Pi pin configuration:
         RST = None     # on the PiOLED this pin isnt used
     # Note the following are only used with SPI:
@@ -39,6 +40,8 @@ class Screen:
         self.top = padding
         self.bottom = self.height-padding
         self.x = 0
+        physicalInput.setAnyEvent(self.changeOccurred)
+        self.timeSinceLastChange = 0
         self.font = ImageFont.load_default()
         self.drawText()
         print("Screen started")
@@ -49,21 +52,22 @@ class Screen:
     def drawText(self):
         # Draw a black filled box to clear the image.
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
-
-        if(self.active):
-            lines = self.getLines()
-            offset = 0
-            
-            for line in lines:
-                if(line.selected):
-                    self.draw.rectangle((0, self.top + offset + 1, self.width,self.top + offset + 10), outline=0, fill=255)
-                self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
-                offset += 8
+        if(self.timeSinceLastChange > 60):
+            if(self.active):
+                lines = self.getLines()
+                offset = 0
+                
+                for line in lines:
+                    if(line.selected):
+                        self.draw.rectangle((0, self.top + offset + 1, self.width,self.top + offset + 10), outline=0, fill=255)
+                    self.draw.text((self.x, self.top + offset), line.text, font=self.font, fill=0 if line.selected else 255)
+                    offset += 8
 
 
         # Display image.
         self.disp.image(self.image)
         self.disp.display()
+        self.timeSinceLastChange += 0.1
         threading.Timer(0.1, self.drawText).start()
 
     def getLines(self):
@@ -72,3 +76,7 @@ class Screen:
             line(self.line2, self.selectedLine == 2),
             line(self.line3, self.selectedLine == 3),
             line(self.line4, self.selectedLine == 4)]
+    
+    def changeOccurred(self):
+        self.timeSinceLastChange = 0
+

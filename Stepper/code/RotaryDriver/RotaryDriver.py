@@ -11,6 +11,7 @@ class RotaryDriver:
         self.buttonEvent = self.defaultEvent
         self.clockwiseEvent = self.defaultEvent
         self.anticlockwiseEvent = self.defaultEvent
+        self.anyEvent = self.defaultEvent
 
         self.rotaryDriverDebounce = False
 
@@ -32,6 +33,7 @@ class RotaryDriver:
 
     def buttonRising(self, e):
         if(not self.rotaryDriverDebounce):
+            self.anyEvent()
             self.buttonEvent()
             self.rotaryDriverDebounce = True
             db = Timer(0.1, self.resetDebounce)
@@ -42,6 +44,7 @@ class RotaryDriver:
         self.rotaryDriverDebounce = False
 
     def rot(self):
+        self.anyEvent()
         if self.state == 1:
             self.pos += 1 # Clockwise
             self.clockwiseEvent()

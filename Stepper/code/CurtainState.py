@@ -23,7 +23,7 @@ class CurtainState:
         self.startSpeed = 0.01
         self.stepMultiplier = 150
         self.allowOpeningFrom = time(6, 0, 0)
-        self.mustOpenBy = time(6, 20, 0)
+        self.mustOpenBy = time(8, 0, 0)
         self.allowClosingFrom = time(15, 0, 0)
         self.mustCloseBy = time(19, 30, 0)
         self.isNight = False
