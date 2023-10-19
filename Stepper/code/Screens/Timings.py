@@ -11,6 +11,7 @@ class Timing(ScreenBase):
         self.back = back
         self.isSettingDay = False
         self.isSettingNight = False
+        self.updateText()
 
     def rotaryButtonEvent(self):
         if(self.selectedLine == 2):
@@ -49,13 +50,13 @@ class Timing(ScreenBase):
 
     def updateText(self):
         if(self.isSettingDay):
-            self.lines[1] = " - day: " + str(self.state.allowOpeningFrom)
+            self.lines[1] = " - Day: " + str(self.state.allowOpeningFrom)
         else:
-            self.lines[1] = "Day"
+            self.lines[1] = "Day: " + str(self.state.allowOpeningFrom)
         if(self.isSettingNight):
-            self.lines[2] = " - night: " + str(self.state.allowClosingFrom)
+            self.lines[2] = " - Night: " + str(self.state.allowClosingFrom)
         else:
-            self.lines[2] = "Night"
+            self.lines[2] = "Night: " + str(self.state.allowClosingFrom)
 
     def modifyTime(self, time, minutes):
         dt = datetime.datetime.combine(datetime.datetime.today(), time) + timedelta(minutes=minutes)

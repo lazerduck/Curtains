@@ -13,6 +13,7 @@ class Calibration(ScreenBase):
         self.isSettingClose = False
         self.isOpenSet = False
         self.isCloseSet = False
+        self.updateText()
         pass
 
     def rotaryButtonEvent(self):
