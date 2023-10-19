@@ -6,7 +6,8 @@ from .ControlScreen import ControlScreen
 
 class MainScreen(ScreenBase):
     def __init__(self, setScreen):
-        self.lines = ["Main", "Calibrate", "Manual", "Contorl", "Times"]
+        self.fullLines = ["Main", "Calibrate", "Manual", "Contorl", "Times"]
+        self.lines = ["Main", "Calibrate", "Manual", "Contorl"]
         self.selectedLine = 2
         self.setScreen = setScreen
 
@@ -28,10 +29,22 @@ class MainScreen(ScreenBase):
     
     def rotaryAnticlockwiseEvent(self):
         self.selectedLine = self.selectedLine + 1
-        if self.selectedLine > 4:
+        if self.selectedLine > 5:
             self.selectedLine = 2
     
     def rotaryClockwiseEvent(self):
         self.selectedLine = self.selectedLine - 1
         if self.selectedLine < 2:
-            self.selectedLine = 4
+            self.selectedLine = 5
+
+    def updateLines(self):
+        length = len(self.fullLines) - 1
+        start = self.selectedLine - 2
+        end = self.selectedLine + 1
+        if start < 0:
+            start = 0
+            end = 4
+        elif end > length:
+            end = length
+            start = length - 4
+        self.lines = self.fullLines[start:end]
