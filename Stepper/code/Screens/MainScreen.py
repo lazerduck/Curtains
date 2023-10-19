@@ -30,14 +30,14 @@ class MainScreen(ScreenBase):
     
     def rotaryAnticlockwiseEvent(self):
         self.selectedOption = self.selectedOption + 1
-        if self.selectedOption > 5:
+        if self.selectedOption > 4:
             self.selectedOption = 2
         self.updateLines()
     
     def rotaryClockwiseEvent(self):
         self.selectedOption = self.selectedOption - 1
         if self.selectedOption < 2:
-            self.selectedOption = 5
+            self.selectedOption = 4
         self.updateLines()
 
     def updateLines(self):
@@ -46,7 +46,7 @@ class MainScreen(ScreenBase):
         end = self.selectedLine + 2
         if start < 0:
             start = 0
-            end = 4
+            end = 3
         elif end > length:
             end = length
             start = length - 4
@@ -54,3 +54,5 @@ class MainScreen(ScreenBase):
 
         option = self.fullLines[self.selectedOption]
         self.selectedLine = self.lines.index(option) + 1
+        print(str(self.selectedLine))
+        print(option)
