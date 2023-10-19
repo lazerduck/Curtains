@@ -26,10 +26,10 @@ class Timing(ScreenBase):
 
     def rotaryAnticlockwiseEvent(self):
         if(self.isSettingDay):
-            self.state.allowOpeningFrom = self.modifyTime(self.state.allowOpeningFrom, -1)
+            self.state.mustOpenBy = self.modifyTime(self.state.mustOpenBy, -1)
             self.updateText()
         elif(self.isSettingNight):
-            self.state.allowClosingFrom = self.modifyTime(self.state.allowClosingFrom, -1)
+            self.state.mustCloseBy = self.modifyTime(self.state.mustCloseBy, -1)
             self.updateText()
         else:
             self.selectedLine = self.selectedLine + 1
@@ -38,10 +38,10 @@ class Timing(ScreenBase):
     
     def rotaryClockwiseEvent(self):
         if(self.isSettingDay):
-            self.state.allowOpeningFrom = self.modifyTime(self.state.allowOpeningFrom, 1)
+            self.state.mustOpenBy = self.modifyTime(self.state.mustOpenBy, 1)
             self.updateText()
         elif(self.isSettingNight):
-            self.state.allowClosingFrom = self.modifyTime(self.state.allowClosingFrom, 1)
+            self.state.mustCloseBy = self.modifyTime(self.state.mustCloseBy, 1)
             self.updateText()
         else:
             self.selectedLine = self.selectedLine - 1
@@ -50,13 +50,13 @@ class Timing(ScreenBase):
 
     def updateText(self):
         if(self.isSettingDay):
-            self.lines[1] = " - Day: " + str(self.state.allowOpeningFrom)
+            self.lines[1] = " - Day: " + str(self.state.mustOpenBy)
         else:
-            self.lines[1] = "Day: " + str(self.state.allowOpeningFrom)
+            self.lines[1] = "Day: " + str(self.state.mustOpenBy)
         if(self.isSettingNight):
-            self.lines[2] = " - Night: " + str(self.state.allowClosingFrom)
+            self.lines[2] = " - Night: " + str(self.state.mustCloseBy)
         else:
-            self.lines[2] = "Night: " + str(self.state.allowClosingFrom)
+            self.lines[2] = "Night: " + str(self.state.mustCloseBy)
 
     def modifyTime(self, time, minutes):
         dt = datetime.datetime.combine(datetime.datetime.today(), time) + timedelta(minutes=minutes)
