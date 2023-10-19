@@ -9,6 +9,7 @@ class MainScreen(ScreenBase):
         self.fullLines = ["Main", "Calibrate", "Manual", "Contorl", "Times"]
         self.lines = ["Main", "Calibrate", "Manual", "Contorl"]
         self.selectedLine = 2
+        self.selectedOption = 2
         self.setScreen = setScreen
 
     def back(self):
@@ -16,27 +17,27 @@ class MainScreen(ScreenBase):
 
     def rotaryButtonEvent(self):
         print("rotaryButtonEvent")
-        if self.selectedLine == 2:
+        if self.selectedOption == 2:
             self.setScreen(Calibration(self.back))
             pass
-        if self.selectedLine == 3:
+        if self.selectedOption == 3:
             self.setScreen(ManualControlScreen(self.setScreen, self.back))
-        if self.selectedLine == 4:
+        if self.selectedOption == 4:
             self.setScreen(ControlScreen(self.setScreen, self.back))
-        if self.selectedLine == 5:
+        if self.selectedOption == 5:
             self.setScreen(Timing(self.back))
         pass
     
     def rotaryAnticlockwiseEvent(self):
-        self.selectedLine = self.selectedLine + 1
-        if self.selectedLine > 5:
-            self.selectedLine = 2
+        self.selectedOption = self.selectedOption + 1
+        if self.selectedOption > 5:
+            self.selectedOption = 2
         self.updateLines()
     
     def rotaryClockwiseEvent(self):
-        self.selectedLine = self.selectedLine - 1
-        if self.selectedLine < 2:
-            self.selectedLine = 5
+        self.selectedOption = self.selectedOption - 1
+        if self.selectedOption < 2:
+            self.selectedOption = 5
         self.updateLines()
 
     def updateLines(self):
@@ -50,3 +51,6 @@ class MainScreen(ScreenBase):
             end = length
             start = length - 4
         self.lines = self.fullLines[start:end]
+
+        option = self.fullLines[self.selectedOption]
+        self.selectedLine = self.lines.index(option) + 1
