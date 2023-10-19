@@ -53,6 +53,7 @@ class MainScreen(ScreenBase):
         self.lines = self.fullLines[start:end]
 
         option = self.fullLines[self.selectedOption]
+        print(str(self.lines))
         print(str(self.selectedLine))
         print(option)
         self.selectedLine = self.lines.index(option) + 1
