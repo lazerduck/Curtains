@@ -17,14 +17,14 @@ class MainScreen(ScreenBase):
 
     def rotaryButtonEvent(self):
         print("rotaryButtonEvent")
-        if self.selectedOption == 2:
+        if self.selectedOption == 1:
             self.setScreen(Calibration(self.back))
             pass
-        if self.selectedOption == 3:
+        if self.selectedOption == 2:
             self.setScreen(ManualControlScreen(self.setScreen, self.back))
-        if self.selectedOption == 4:
+        if self.selectedOption == 3:
             self.setScreen(ControlScreen(self.setScreen, self.back))
-        if self.selectedOption == 5:
+        if self.selectedOption == 4:
             self.setScreen(Timing(self.back))
         pass
     
