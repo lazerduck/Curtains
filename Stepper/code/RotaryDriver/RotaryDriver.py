@@ -36,7 +36,7 @@ class RotaryDriver:
             self.anyEvent()
             self.buttonEvent()
             self.rotaryDriverDebounce = True
-            db = Timer(0.1, self.resetDebounce)
+            db = Timer(0.2, self.resetDebounce)
             db.start()
 
         
