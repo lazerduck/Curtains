@@ -9,7 +9,7 @@ class MainScreen(ScreenBase):
         self.fullLines = ["Main", "Calibrate", "Manual", "Contorl", "Times"]
         self.lines = ["Main", "Calibrate", "Manual", "Contorl"]
         self.selectedLine = 2
-        self.selectedOption = 2
+        self.selectedOption = 1
         self.setScreen = setScreen
 
     def back(self):
@@ -31,12 +31,12 @@ class MainScreen(ScreenBase):
     def rotaryAnticlockwiseEvent(self):
         self.selectedOption = self.selectedOption + 1
         if self.selectedOption > 4:
-            self.selectedOption = 2
+            self.selectedOption = 1
         self.updateLines()
     
     def rotaryClockwiseEvent(self):
         self.selectedOption = self.selectedOption - 1
-        if self.selectedOption < 2:
+        if self.selectedOption < 1:
             self.selectedOption = 4
         self.updateLines()
 
