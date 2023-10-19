@@ -42,8 +42,8 @@ class MainScreen(ScreenBase):
 
     def updateLines(self):
         length = len(self.fullLines)
-        start = self.selectedLine - 2
-        end = self.selectedLine + 2
+        start = self.selectedLine - 3
+        end = self.selectedLine
         if start < 0:
             start = 0
             end = 3
@@ -53,6 +53,7 @@ class MainScreen(ScreenBase):
         self.lines = self.fullLines[start:end]
 
         option = self.fullLines[self.selectedOption]
-        self.selectedLine = self.lines.index(option) + 1
         print(str(self.selectedLine))
         print(option)
+        self.selectedLine = self.lines.index(option) + 1
+        
