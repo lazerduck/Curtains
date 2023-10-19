@@ -43,7 +43,7 @@ class MainScreen(ScreenBase):
     def updateLines(self):
         length = len(self.fullLines)
         start = self.selectedOption - 3
-        end = self.selectedOption
+        end = self.selectedOption + 1
         if start < 0:
             start = 0
             end = 4
