@@ -46,7 +46,7 @@ class MainScreen(ScreenBase):
         end = self.selectedLine
         if start < 0:
             start = 0
-            end = 3
+            end = 4
         elif end > length:
             end = length
             start = length - 4
