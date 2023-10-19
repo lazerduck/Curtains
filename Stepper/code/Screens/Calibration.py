@@ -33,6 +33,7 @@ class Calibration(ScreenBase):
         if(self.selectedLine == 4):
             if(self.isOpenSet and self.isCloseSet):
                 self.state.isCalibrated = True
+            self.state.saveState()
             self.back()
 
     def rotaryAnticlockwiseEvent(self):
@@ -58,10 +59,10 @@ class Calibration(ScreenBase):
         if(self.isSettingOpen):
             self.lines[1] = " - open: " + str(self.state.position)
         else:
-            self.lines[1] = " open: " + str(self.state.position)
+            self.lines[1] = " open: " + str(self.state.openLimit)
 
 
         if(self.isSettingClose):
             self.lines[2] = " - close: " + str(self.state.position)
         else:
-            self.lines[2] = " close: " + str(self.state.position)
+            self.lines[2] = " close: " + str(self.state.closeLimit)

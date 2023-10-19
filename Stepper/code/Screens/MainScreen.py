@@ -1,3 +1,4 @@
+from .Timings import Timing
 from .ScreenBase import ScreenBase
 from .ManualControlScreen import ManualControlScreen
 from .Calibration import Calibration
@@ -5,7 +6,7 @@ from .ControlScreen import ControlScreen
 
 class MainScreen(ScreenBase):
     def __init__(self, setScreen):
-        self.lines = ["Main", "Calibrate", "Manual", "Contorl"]
+        self.lines = ["Main", "Calibrate", "Manual", "Contorl", "Times"]
         self.selectedLine = 2
         self.setScreen = setScreen
 
@@ -21,6 +22,8 @@ class MainScreen(ScreenBase):
             self.setScreen(ManualControlScreen(self.setScreen, self.back))
         if self.selectedLine == 4:
             self.setScreen(ControlScreen(self.setScreen, self.back))
+        if self.selectedLine == 5:
+            self.setScreen(Timing(self.back))
         pass
     
     def rotaryAnticlockwiseEvent(self):
