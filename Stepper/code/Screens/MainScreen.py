@@ -31,11 +31,13 @@ class MainScreen(ScreenBase):
         self.selectedLine = self.selectedLine + 1
         if self.selectedLine > 5:
             self.selectedLine = 2
+        self.updateLines()
     
     def rotaryClockwiseEvent(self):
         self.selectedLine = self.selectedLine - 1
         if self.selectedLine < 2:
             self.selectedLine = 5
+        self.updateLines()
 
     def updateLines(self):
         length = len(self.fullLines) - 1

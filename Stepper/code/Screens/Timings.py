@@ -1,4 +1,5 @@
 from datetime import timedelta
+import datetime
 from .ScreenBase import ScreenBase
 import CurtainState
 
@@ -24,10 +25,10 @@ class Timing(ScreenBase):
 
     def rotaryAnticlockwiseEvent(self):
         if(self.isSettingDay):
-            self.state.allowOpeningFrom = self.state.allowOpeningFrom - timedelta(minutes=1)
+            self.state.allowOpeningFrom = self.modifyTime(self.state.allowOpeningFrom, -1)
             self.updateText()
         elif(self.isSettingNight):
-            self.state.allowClosingFrom = self.state.allowClosingFrom - timedelta(minutes=1)
+            self.state.allowClosingFrom = self.modifyTime(self.state.allowClosingFrom, -1)
             self.updateText()
         else:
             self.selectedLine = self.selectedLine + 1
@@ -36,10 +37,10 @@ class Timing(ScreenBase):
     
     def rotaryClockwiseEvent(self):
         if(self.isSettingDay):
-            self.state.allowOpeningFrom = self.state.allowOpeningFrom + timedelta(minutes=1)
+            self.state.allowOpeningFrom = self.modifyTime(self.state.allowOpeningFrom, 1)
             self.updateText()
         elif(self.isSettingNight):
-            self.state.allowClosingFrom = self.state.allowClosingFrom + timedelta(minutes=1)
+            self.state.allowClosingFrom = self.modifyTime(self.state.allowClosingFrom, 1)
             self.updateText()
         else:
             self.selectedLine = self.selectedLine - 1
@@ -55,3 +56,7 @@ class Timing(ScreenBase):
             self.lines[2] = " - night: " + str(self.state.allowClosingFrom)
         else:
             self.lines[2] = "Night"
+
+    def modifyTime(self, time, minutes):
+        dt = datetime.combine(datetime.today(), time) + timedelta(minutes=minutes)
+        return dt.time()
