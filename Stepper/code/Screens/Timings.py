@@ -58,5 +58,5 @@ class Timing(ScreenBase):
             self.lines[2] = "Night"
 
     def modifyTime(self, time, minutes):
-        dt = datetime.datetime.combine(datetime.today(), time) + timedelta(minutes=minutes)
+        dt = datetime.datetime.combine(datetime.datetime.today(), time) + timedelta(minutes=minutes)
         return dt.time()
