@@ -19,7 +19,7 @@ class webHandler(BaseHTTPRequestHandler):
 
         pathVals = list(filter(None, self.path.split("/")))
         print(pathVals)
-        print(json.dumps(actions))
+        print(actions)
         if(actions.get(pathVals[0].lower()) == None):
             self.wfile.write(bytes("Invalid action", "utf-8"))
             return
