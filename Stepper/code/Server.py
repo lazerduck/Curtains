@@ -1,58 +1,21 @@
 from CurtainState import CurtainState
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import datetime
 import json
+from Controllers.Get import GetController
+from Controllers.Post import PostController
 
 state = CurtainState()
+get = GetController(state)
+post = PostController(state)
 
 class webHandler(BaseHTTPRequestHandler):
-
-    def open(self):
-        state.setOpen()
-        return "Opening"
-
-    def close(self):
-        state.setClosed()
-        return "Closing"
-
-    def stop(self):
-        state.setTargetPosition(state.position)
-        return "Stopping"
-
-    def state(self):
-        data = {
-            "position": state.position,
-            "targetPosition": state.targetPosition,
-            "speed": state.speed,
-            "startSpeed": state.startSpeed,
-            "stepMultiplier": state.stepMultiplier,
-            "allowOpeningFrom": state.allowOpeningFrom.isoformat(),
-            "mustOpenBy": state.mustOpenBy.isoformat(),
-            "allowClosingFrom": state.allowClosingFrom.isoformat(),
-            "mustCloseBy": state.mustCloseBy.isoformat(),
-            "isNight": state.isNight,
-            "openLimit": state.openLimit,
-            "closeLimit": state.closeLimit,
-            "isLightSensorEnabled": state.isLightSensorEnabled,
-            "isCalibrated": state.isCalibrated
-        }
-
-        return json.dumps(data)
-    
-    def goTo(self, position):
-        state.setTargetPosition(position)
     
     def do_GET(self):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
 
-        actions = {
-            "open": self.open,
-            "close": self.close,
-            "stop": self.stop,
-            "state": self.state,
-        }
+        actions = get.actions
 
         pathVals = list(filter(None, self.path.split("/")))
         print(pathVals)
@@ -72,11 +35,12 @@ class webHandler(BaseHTTPRequestHandler):
 
         data = json.loads(self.data_string.decode("utf-8"))
 
-        actions = {
-            "goto": self.goTo,
-        }
+        actions = post.actions
 
         pathVals = list(filter(None, self.path.split('/')))
-        data = actions[pathVals[0].lower()](data)
+        response = actions[pathVals[0].lower()](data)
+
+        if isinstance(response, str):
+            self.wfile.write(bytes(response, "utf-8"))
         
         return
