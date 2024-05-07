@@ -35,6 +35,6 @@ class GetController:
     def getLimits(self):
         return json.dumps({
             "openLimit": self.state.openLimit,
-            "closeLimit": self.state.closeLimit
+            "closeLimit": self.state.closeLimit,
             "isCalibrated": self.state.isCalibrated
         })
