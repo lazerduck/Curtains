@@ -10,7 +10,8 @@ class GetController:
             "stop": self.stop,
             "gettimes": self.getTimes,
             "getlimits": self.getLimits,
-            "position": self.position
+            "position": self.position,
+            "targetposition": self.targetPosition
         }
 
     def open(self):
@@ -24,6 +25,11 @@ class GetController:
     def position(self):
         return json.dumps({
             "position": self.state.position
+        })
+    
+    def targetPosition(self):
+        return json.dumps({
+            "targetPosition": self.state.targetPosition
         })
     
     def stop(self):
