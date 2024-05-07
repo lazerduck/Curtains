@@ -5,8 +5,8 @@ class PostController:
         self.state = state
         self.actions = {
             "goto": self.goTo,
-            "setTimes": self.setTimes,
-            "setLimits": self.setLimits
+            "settimes": self.setTimes,
+            "setlimits": self.setLimits
         }
 
     def goTo(self, data):

@@ -8,8 +8,8 @@ class GetController:
             "open": self.open,
             "close": self.close,
             "stop": self.stop,
-            "getTimes": self.getTimes,
-            "getLimits": self.getLimits
+            "gettimes": self.getTimes,
+            "getlimits": self.getLimits
         }
 
     def open(self):
