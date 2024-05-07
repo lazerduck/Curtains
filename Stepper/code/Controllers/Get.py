@@ -22,7 +22,9 @@ class GetController:
         return "Closing"
     
     def position(self):
-        return self.state.position
+        return json.dumps({
+            "position": self.state.position
+        })
     
     def stop(self):
         self.state.setTargetPosition(self.state.position)
