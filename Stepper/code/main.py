@@ -11,6 +11,7 @@ from Screens.MainScreen import MainScreen
 from AutomationManager import AutomationManager
 from Server import webHandler
 from http.server import HTTPServer
+from SunRiseManager import SunRiseManager
 
 
 GPIO.setmode(GPIO.BCM)
@@ -38,7 +39,9 @@ motorController = MotorController(
 screen = Screen(physicalInput)
 screenInterpreter = ScreenInterpreter(screen, physicalInput)
 screenInterpreter.setScreen(MainScreen(screenInterpreter.setScreen))
+sunriseManager = SunRiseManager(state)
 automation = AutomationManager(state)
+
 
 
 def motorLoop():

@@ -31,6 +31,8 @@ class CurtainState:
         self.closeLimit = 0
         self.isLightSensorEnabled = True
         self.isCalibrated = True
+        self.useSunrise = True
+        self.SunriseData = {}
         self.loadStoredState()
         atexit.register(self.saveState)
 
