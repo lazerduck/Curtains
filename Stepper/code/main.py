@@ -40,7 +40,7 @@ screen = Screen(physicalInput)
 screenInterpreter = ScreenInterpreter(screen, physicalInput)
 screenInterpreter.setScreen(MainScreen(screenInterpreter.setScreen))
 sunriseManager = SunRiseManager(state)
-automation = AutomationManager(state)
+automation = AutomationManager(state, sunriseManager)
 
 
 
