@@ -11,8 +11,14 @@ class GetController:
             "gettimes": self.getTimes,
             "getlimits": self.getLimits,
             "position": self.position,
-            "targetposition": self.targetPosition
+            "targetposition": self.targetPosition,
+            "state": self.state
         }
+    
+    def state(self):
+        return json.dumps({
+            "state": self.state
+        })
 
     def open(self):
         self.state.setOpen()
