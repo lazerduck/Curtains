@@ -36,4 +36,3 @@ class SunriseScreen(ScreenBase):
         self.lines[0] = "Sunrise: " + self.state.SunriseData["results"]["sunrise"]
         self.lines[1] = "Sunset: " + self.state.SunriseData["results"]["sunset"]
         self.lines[2] = "use sunrise: " + str(self.state.useSunrise)
-        self.screen.setLines(self.lines, self.selectedLine)
