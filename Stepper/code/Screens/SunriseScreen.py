@@ -11,25 +11,25 @@ class SunriseScreen(ScreenBase):
         pass
 
     def rotaryButtonEvent(self):
-        if(self.selectedLine == 2):
+        if(self.selectedLine == 3):
             self.state.useSunrise = not self.state.useSunrise
             self.state.saveState()
             self.back()
         
-        if(self.selectedLine == 3):
+        if(self.selectedLine == 4):
             self.back()
 
     def rotaryAnticlockwiseEvent(self):
         self.selectedLine = self.selectedLine + 1
-        if self.selectedLine > 3:
-            self.selectedLine = 2
+        if self.selectedLine > 4:
+            self.selectedLine = 3
         self.updateText()
 
     
     def rotaryClockwiseEvent(self):
         self.selectedLine = self.selectedLine - 1
-        if self.selectedLine < 2:
-            self.selectedLine = 3
+        if self.selectedLine < 3:
+            self.selectedLine = 4
         self.updateText()
 
     def updateText(self):
