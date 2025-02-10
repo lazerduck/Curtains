@@ -19,4 +19,4 @@ class SunRiseManager:
         return self.state.SunriseData["results"]["sunset"] < time.strftime("%H:%M:%S")
     
     def isDataUpToDate(self):
-        return self.state.SunriseData["date"] == time.strftime("%Y-%m-%d")
+        return self.state.SunriseData["results"]["date"] == time.strftime("%Y-%m-%d")
