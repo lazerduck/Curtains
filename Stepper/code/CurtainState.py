@@ -32,7 +32,13 @@ class CurtainState:
         self.isLightSensorEnabled = True
         self.isCalibrated = True
         self.useSunrise = True
-        self.SunriseData = {}
+        self.SunriseData = {
+            "results": {
+                "sunrise": "06:00:00",
+                "sunset": "21:00:00",
+                "date": "2021-01-01",
+            }
+        }
         self.loadStoredState()
         atexit.register(self.saveState)
 

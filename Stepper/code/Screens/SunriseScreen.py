@@ -5,7 +5,7 @@ class SunriseScreen(ScreenBase):
     def __init__(self, back) -> None:
         self.state = CurtainState.CurtainState()
         self.lines = ["Sunrise", "Sunset" "use sunrise", "back"]
-        self.selectedLine = 2
+        self.selectedLine = 3
         self.back = back
         self.updateText()
         pass
