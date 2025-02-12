@@ -17,7 +17,22 @@ class GetController:
     
     def state(self):
         return json.dumps({
-            "state": self.state
+            "position": self.state.position,
+            "targetPosition": self.state.targetPosition,
+            "speed": self.state.speed,
+            "startSpeed": self.state.startSpeed,
+            "stepMultiplier": self.state.stepMultiplier,
+            "allowOpeningFrom": self.state.allowOpeningFrom.isoformat(),
+            "mustOpenBy": self.state.mustOpenBy.isoformat(),
+            "allowClosingFrom": self.state.allowClosingFrom.isoformat(),
+            "mustCloseBy": self.state.mustCloseBy.isoformat(),
+            "isNight": self.state.isNight,
+            "openLimit": self.state.openLimit,
+            "closeLimit": self.state.closeLimit,
+            "isLightSensorEnabled": self.state.isLightSensorEnabled,
+            "isCalibrated": self.state.isCalibrated,
+            "useSunrise": self.state.useSunrise,
+            "SunriseData": self.state.SunriseData
         })
 
     def open(self):
