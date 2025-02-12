@@ -12,7 +12,7 @@ class AutomationManager:
             self.sunriseManager.initialiseSunRiseData()
         if self.state.isCalibrated:
             if self.state.useSunrise:
-                if self.state.isNight and self.sunriseManager.isAfterSunrise():
+                if self.state.isNight and self.sunriseManager.isAfterSunrise() and not self.sunriseManager.isAfterSunset():
                     self.state.setTargetPosition(self.state.openLimit)
                     self.state.setNight(False)
                     print("Opening")
