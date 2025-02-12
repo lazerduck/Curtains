@@ -12,10 +12,10 @@ class GetController:
             "getlimits": self.getLimits,
             "position": self.position,
             "targetposition": self.targetPosition,
-            "state": self.state
+            "state": self.getState
         }
     
-    def state(self):
+    def getState(self):
         return json.dumps({
             "position": self.state.position,
             "targetPosition": self.state.targetPosition,
