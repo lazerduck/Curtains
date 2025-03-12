@@ -15,11 +15,13 @@ class SunRiseManager:
 
     def isAfterSunrise(self):
         # convert the API time to a time object and compare it to the current time
-        return datetime.now().time() > datetime.strptime(self.state.SunriseData["results"]["sunrise"], "%I:%M:%S %p").time()
+        isAfterSunrise = datetime.now().time() > datetime.strptime(self.state.SunriseData["results"]["sunrise"], "%I:%M:%S %p").time()
+        return isAfterSunrise and datetime.now().time() > self.state.allowOpeningFrom
     
     def isAfterSunset(self):
         # convert the API time to a time object and compare it to the current time
-        return datetime.now().time() > datetime.strptime(self.state.SunriseData["results"]["sunset"], "%I:%M:%S %p").time()
+        isAfterSunset = datetime.now().time() > datetime.strptime(self.state.SunriseData["results"]["sunset"], "%I:%M:%S %p").time()
+        return isAfterSunset and datetime.now().time() > self.state.allowClosingFrom
     
     def isDataUpToDate(self):
         # check if the data is older than 24 hours
